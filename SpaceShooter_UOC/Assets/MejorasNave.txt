@@ -1,0 +1,16 @@
+Mejoras Stats
+
+Nave Inicial: 
+- Spaceship_main_02_Hull
+- Spaceship_main_02_Wing_L
+- Spaceship_main_02_Wing_R
+- Spaceship_main_03_Engine
+- Spaceship_main_01_Weapon_L y Spaceship_main_01_Weapon_R
+
+Mejoras 1:
+- Spaceship_main_03_Engine --> Spaceship_main_01_Engine
+- Spaceship_main_01_Weapon_L y Spaceship_main_01_Weapon_R
+
+Mejoras 2:
+- Spaceship_main_01_Engine --> Spaceship_main_01_Engine + Spaceship_main_02_Engine
+- 
