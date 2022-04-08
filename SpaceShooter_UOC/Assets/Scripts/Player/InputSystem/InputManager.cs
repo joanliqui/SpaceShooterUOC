@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
 
 public class InputManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class InputManager : MonoBehaviour
     public bool shot;
 
     
+    [SerializeField] UnityEvent onSwitchWeaponClick;
     private void Awake()
     {
         _input = new PlayerControls();
@@ -21,6 +23,13 @@ public class InputManager : MonoBehaviour
         _input.Ship.Shot.performed += onShot;
         _input.Ship.Shot.canceled += onShot;
 
+        _input.Ship.SwitchWeapon.canceled += onSwitchWeapon;
+
+    }
+
+    private void onSwitchWeapon(InputAction.CallbackContext obj)
+    {
+        onSwitchWeaponClick?.Invoke();
     }
 
     private void onShot(InputAction.CallbackContext obj)

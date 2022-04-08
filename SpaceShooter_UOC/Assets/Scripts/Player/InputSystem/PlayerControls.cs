@@ -44,6 +44,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""79707ee3-1793-46d9-b3d6-d600eaf70e23"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +77,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Shot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""beb48e3e-3e42-456a-b4c1-9eb97704ec28"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +98,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Ship = asset.FindActionMap("Ship", throwIfNotFound: true);
         m_Ship_Move = m_Ship.FindAction("Move", throwIfNotFound: true);
         m_Ship_Shot = m_Ship.FindAction("Shot", throwIfNotFound: true);
+        m_Ship_SwitchWeapon = m_Ship.FindAction("SwitchWeapon", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,12 +160,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IShipActions m_ShipActionsCallbackInterface;
     private readonly InputAction m_Ship_Move;
     private readonly InputAction m_Ship_Shot;
+    private readonly InputAction m_Ship_SwitchWeapon;
     public struct ShipActions
     {
         private @PlayerControls m_Wrapper;
         public ShipActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Ship_Move;
         public InputAction @Shot => m_Wrapper.m_Ship_Shot;
+        public InputAction @SwitchWeapon => m_Wrapper.m_Ship_SwitchWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Ship; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -160,6 +183,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Shot.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnShot;
                 @Shot.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnShot;
                 @Shot.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnShot;
+                @SwitchWeapon.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnSwitchWeapon;
+                @SwitchWeapon.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnSwitchWeapon;
+                @SwitchWeapon.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnSwitchWeapon;
             }
             m_Wrapper.m_ShipActionsCallbackInterface = instance;
             if (instance != null)
@@ -170,6 +196,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Shot.started += instance.OnShot;
                 @Shot.performed += instance.OnShot;
                 @Shot.canceled += instance.OnShot;
+                @SwitchWeapon.started += instance.OnSwitchWeapon;
+                @SwitchWeapon.performed += instance.OnSwitchWeapon;
+                @SwitchWeapon.canceled += instance.OnSwitchWeapon;
             }
         }
     }
@@ -178,5 +207,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnShot(InputAction.CallbackContext context);
+        void OnSwitchWeapon(InputAction.CallbackContext context);
     }
 }

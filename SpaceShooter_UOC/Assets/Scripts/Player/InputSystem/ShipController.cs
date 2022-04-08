@@ -7,33 +7,37 @@ public class ShipController : MonoBehaviour
     #region References
     private InputManager input;
     private Rigidbody rb;
+    WeaponManager weaponManager;
     #endregion
 
+    [Header("Ship Movement")]
     [SerializeField] float movSpeed = 10f;
-    private Vector2 appliedMovement;
+    [SerializeField] float rotationSpeed = 100f;
 
-    [SerializeField] float timeBtwShots = 0.2f;
-    private float cntTimeBtwShots = 0f;
+    //player
+    private Vector3 appliedMovement;
+    private float targetRotation = 0.0f;
+
+
+
     void Start()
     {
         input = GetComponent<InputManager>();
         rb = GetComponent<Rigidbody>();
+        weaponManager = GetComponent<WeaponManager>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (input.shot)
         {
-            if (CanShot())
+            if (weaponManager.CanShot())
             {
-                Shot();
+                weaponManager.Shot();
             }
         }
 
         Movement();
-
-        
     }
 
     private void FixedUpdate()
@@ -43,29 +47,12 @@ public class ShipController : MonoBehaviour
 
     private void Movement()
     {
-        Vector3 inputDirection = new Vector3(input.moveDir.x, input.moveDir.y, 0f).normalized;
+        Vector3 inputDirection = new Vector3(input.moveDir.x, 0f, input.moveDir.y).normalized;
         appliedMovement = inputDirection * movSpeed * Time.deltaTime;
     }
 
-    private bool CanShot()
+    private void SlightRotation()
     {
-        bool canShot = true;
-        if(cntTimeBtwShots > 0)
-        {
-            cntTimeBtwShots -= Time.deltaTime;
-            canShot = false;
-        }
-        else
-        {
-            cntTimeBtwShots = timeBtwShots;
-            canShot = true;
-        }
-
-        return canShot;
-    }
-
-    private void Shot()
-    {
-        Debug.Log("Shot");
+        
     }
 }
