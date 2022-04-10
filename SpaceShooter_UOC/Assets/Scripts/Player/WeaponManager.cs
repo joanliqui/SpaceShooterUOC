@@ -37,7 +37,7 @@ public class WeaponManager : MonoBehaviour
     public bool CanShot()
     {
         bool canShot = true;
-        if (cntTimeBtwShots > 0)
+        if (cntTimeBtwShots > 0.01f)
         {
             cntTimeBtwShots -= Time.deltaTime;
             canShot = false;

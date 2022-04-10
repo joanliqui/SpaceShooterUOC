@@ -10,7 +10,7 @@ public class WeaponUIHolder : MonoBehaviour
 
     public bool IsEmpty { get => isEmpty; set => isEmpty = value; }
 
-    public void Start()
+    public void Awake()
     {
         image = transform.GetChild(0).GetComponent<Image>();
     }
