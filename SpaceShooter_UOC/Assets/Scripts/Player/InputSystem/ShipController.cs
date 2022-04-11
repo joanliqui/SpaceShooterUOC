@@ -54,7 +54,7 @@ public class ShipController : MonoBehaviour
 
     private void Movement()
     {
-        Vector3 inputDirection = new Vector3(input.moveDir.x, 0f, input.moveDir.y).normalized;
+        Vector3 inputDirection = new Vector3(-input.moveDir.y, 0f, input.moveDir.x).normalized;
         appliedMovement = inputDirection * movSpeed * Time.deltaTime;
     }
 

@@ -4,9 +4,22 @@ using UnityEngine;
 
 public sealed class SimpleWeapon : Weapon
 {
-    public override void Shot(Transform socket)
+    [SerializeField] private AudioClip clip;
+    public override void Shot(Transform[] socket, AudioSource source)
     {
-        Debug.Log("Shooting Simple Bullets");
-        //Instantiate(bulletPrefab, socket.position, Quaternion.identity);
+        for (int i = 0; i < socket.Length; i++)
+        {
+            Instantiate(bulletPrefab, socket[i].position, Quaternion.identity);
+        }
+        if(source != null)
+        {
+            if(source.clip != clip)
+            {
+                source.clip = clip;
+            }
+
+            source.Play();
+        }
+        
     }
 }

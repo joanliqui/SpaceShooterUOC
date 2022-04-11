@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 101f5e6108e3c534584e95a6a4561996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 3403755406172049254, guid: 865d8c4d461157c4bbf901a98a506b2c, type: 3}
   timeBtwShots: 0.5
   weaponSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  clip: {fileID: 8300000, guid: a0a08fe880cb4ee4880fcad35ac4ba46, type: 3}

@@ -14,7 +14,14 @@ public abstract class Weapon : MonoBehaviour
     public Sprite WeaponSprite { get => weaponSprite;}
     public float TimeBtwShots { get => timeBtwShots; set => timeBtwShots = value; }
 
-    public abstract void Shot(Transform socket);
+    public virtual void Shot(Transform socket, AudioSource source)
+    {
+
+    }
+    public virtual void Shot(Transform[] socket, AudioSource source)
+    {
+
+    }
 
     private void OnTriggerEnter(Collider other)
     {

@@ -8,31 +8,35 @@ public class WeaponManager : MonoBehaviour
     private Weapon selectedWeapon;
     private int selectWeaponNum = 0;
 
-    [SerializeField] Transform weaponSocket;
+    [SerializeField] Transform[] weaponSockets = new Transform[2];
 
     private List<Weapon> weapons = new List<Weapon>();
     private WeaponUI weaponUI;
 
+    private AudioSource source;
 
     private float cntTimeBtwShots = 0;
 
-    public Weapon SelectedWeapon { get => selectedWeapon; set => selectedWeapon = value; }
 
     private void Start()
     {
         weaponUI = GameObject.FindGameObjectWithTag("WeaponUI").GetComponent<WeaponUI>();
+        source = GetComponent<AudioSource>();
+
         if(initialWeapon != null)
         {
             weaponUI.InicializeWeaponHolderUI(initialWeapon);
             weapons.Add(initialWeapon);
             selectedWeapon = initialWeapon;
+
+            InstantiateConcreteWeapon(initialWeapon);
         }
         
     }
 
     public void Shot()
     {
-        selectedWeapon.Shot(weaponSocket);
+        selectedWeapon.Shot(weaponSockets, source);
     }
     public bool CanShot()
     {
@@ -77,5 +81,14 @@ public class WeaponManager : MonoBehaviour
         }
         Debug.Log(selectWeaponNum);
         selectedWeapon = weapons[selectWeaponNum];
+    }
+
+    private void InstantiateConcreteWeapon(Weapon wp)
+    {
+        if(wp != null)
+        {
+            GameObject w = Instantiate(wp.gameObject, weaponSockets[0].position, Quaternion.Euler(0.0f, 90f, 0.0f), weaponSockets[0]);
+            
+        }
     }
 }
