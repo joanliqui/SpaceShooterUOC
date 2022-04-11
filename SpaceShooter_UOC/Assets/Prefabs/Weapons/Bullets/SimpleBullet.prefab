@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3403755406172049255}
   - component: {fileID: 3403755406172049252}
+  - component: {fileID: 9000940199200071515}
   m_Layer: 0
   m_Name: SimpleBullet
   m_TagString: Untagged
@@ -45,6 +46,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
+  damage: 25
+--- !u!136 &9000940199200071515
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3403755406172049254}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3403755407180495875
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,9 +72,8 @@ GameObject:
   - component: {fileID: 3403755407180495872}
   - component: {fileID: 3403755407180495903}
   - component: {fileID: 3403755407180495902}
-  - component: {fileID: 3403755407180495873}
   m_Layer: 0
-  m_Name: Capsule
+  m_Name: CapsuleMesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,17 +142,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3403755407180495873
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3403755407180495875}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
