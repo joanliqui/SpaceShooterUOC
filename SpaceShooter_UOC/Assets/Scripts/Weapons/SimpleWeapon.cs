@@ -5,13 +5,20 @@ using UnityEngine;
 public sealed class SimpleWeapon : Weapon
 {
     [SerializeField] private AudioClip clip;
-    public override void Shot(Transform[] socket, AudioSource source)
+    [SerializeField] private Pool bulletPool;
+
+    //Solo dispara una bala
+    public override void Shot(Transform socket, AudioSource source)
     {
-        for (int i = 0; i < socket.Length; i++)
+        if(bulletPool != null)
         {
-            Instantiate(bulletPrefab, socket[i].position, Quaternion.identity);
+            GameObject shot = bulletPool.Get();
+            shot.SetActive(true);  
+            shot.transform.position = socket.position;
+            shot.transform.rotation = socket.rotation;
         }
-        if(source != null)
+
+        if (source != null)
         {
             if(source.clip != clip)
             {
@@ -20,6 +27,20 @@ public sealed class SimpleWeapon : Weapon
 
             source.Play();
         }
-        
+    }
+    //Dispara las dos balas
+    public override void Shot(Transform[] socket, AudioSource source)
+    {
+        if(bulletPool != null)
+        {
+            for (int i = 0; i < socket.Length; i++)
+            {
+                GameObject shot = bulletPool.Get();
+                shot.SetActive(true);
+                shot.transform.position = socket[i].position;
+                shot.transform.rotation = socket[i].rotation;
+            }
+        }
+
     }
 }

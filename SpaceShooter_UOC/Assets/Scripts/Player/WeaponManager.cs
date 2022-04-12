@@ -16,6 +16,7 @@ public class WeaponManager : MonoBehaviour
     private AudioSource source;
 
     private float cntTimeBtwShots = 0;
+    private bool canShot = true;
 
 
     private void Start()
@@ -34,22 +35,29 @@ public class WeaponManager : MonoBehaviour
         
     }
 
+   
+
     public void Shot()
     {
-        selectedWeapon.Shot(weaponSockets, source);
+        cntTimeBtwShots = selectedWeapon.TimeBtwShots;
+        canShot = false;
+        if(selectedWeapon != null)
+            selectedWeapon.Shot(weaponSockets, source);
+
     }
     public bool CanShot()
     {
-        bool canShot = true;
-        if (cntTimeBtwShots > 0.01f)
+        if (!canShot)
         {
-            cntTimeBtwShots -= Time.deltaTime;
-            canShot = false;
-        }
-        else
-        {
-            cntTimeBtwShots = selectedWeapon.TimeBtwShots;
-            canShot = true;
+            if (cntTimeBtwShots >= 0.01f)
+            {
+                cntTimeBtwShots -= Time.deltaTime;
+                canShot = false;
+            }
+            else
+            {
+                canShot = true;
+            }
         }
 
         return canShot;

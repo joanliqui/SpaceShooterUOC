@@ -35,11 +35,12 @@ public class ShipController : MonoBehaviour
 
     void Update()
     {
-        if (input.shot)
+        if (weaponManager.CanShot())
         {
-            if (weaponManager.CanShot())
+            if (input.shot)
             {
                 weaponManager.Shot();
+
             }
         }
 
