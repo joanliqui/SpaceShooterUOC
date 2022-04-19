@@ -16,6 +16,7 @@ public class ShotgunWeapon : Weapon
                 GameObject shot = bulletPool.Get();
                 shot.SetActive(true);
                 shot.transform.position = socket.position;
+                
                 shot.transform.rotation = socket.rotation;
             }
         }
@@ -33,8 +34,10 @@ public class ShotgunWeapon : Weapon
 
     public override void Shot(Transform[] socket, AudioSource source)
     {
+        float addedAngle = 15f;
         for (int i = 0; i < socket.Length; i++)
         {
+            Quaternion rotation = socket[i].rotation * Quaternion.Inverse(Quaternion.Euler(0.0f, addedAngle * (numberBullets -1), 0.0f));
             for (int j = 0; j < numberBullets; j++)
             {
                 if (bulletPool != null)
@@ -42,9 +45,11 @@ public class ShotgunWeapon : Weapon
                     GameObject shot = bulletPool.Get();
                     shot.SetActive(true);
                     shot.transform.position = socket[i].position;
-                    shot.transform.rotation = socket[i].rotation;
+                    shot.transform.rotation = rotation;
+                    rotation *= Quaternion.Euler(0.0f, addedAngle, 0.0f);
                 }
             }
+            addedAngle *= -1;
         }
         if (source != null)
         {
