@@ -8,6 +8,8 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected float timeBtwShots = 0.1f;
     [SerializeField] protected Sprite weaponSprite;
     [SerializeField] protected int damage;
+    [SerializeField] protected Pool bulletPool;
+    [SerializeField] protected AudioClip clip;
 
     protected int weaponLvl = 1;
     protected int maxWeaponLvl = 3;

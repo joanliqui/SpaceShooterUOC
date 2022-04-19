@@ -4,9 +4,6 @@ using UnityEngine;
 
 public sealed class SimpleWeapon : Weapon
 {
-    [SerializeField] private AudioClip clip;
-    [SerializeField] private Pool bulletPool;
-
     //Solo dispara una bala
     public override void Shot(Transform socket, AudioSource source)
     {
@@ -28,7 +25,8 @@ public sealed class SimpleWeapon : Weapon
             source.Play();
         }
     }
-    //Dispara las dos balas
+
+    //Dispara X balas
     public override void Shot(Transform[] socket, AudioSource source)
     {
         if(bulletPool != null)

@@ -36,6 +36,6 @@ public class WeaponUI : MonoBehaviour
 
     public void UpgradeWeaponUI(Weapon wp)
     {
-        //Algun cambio en el sprite
+        Debug.Log("Weapon Upgraded!");
     }
 }

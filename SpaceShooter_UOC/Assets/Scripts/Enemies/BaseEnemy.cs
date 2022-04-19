@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseEnemy : MonoBehaviour
+public abstract class BaseEnemy : MonoBehaviour, IDamagable
 {
     [SerializeField] protected int health = 50;
-
+    [SerializeField] protected GameObject powerUp;
+    protected AudioSource source;
     void Start()
     {
         
@@ -24,6 +25,11 @@ public abstract class BaseEnemy : MonoBehaviour
 
     public virtual void Destroyed()
     {
-        Destroy(gameObject);
+        
+    }
+
+    public virtual void Damaged(int damage)
+    {
+       
     }
 }
