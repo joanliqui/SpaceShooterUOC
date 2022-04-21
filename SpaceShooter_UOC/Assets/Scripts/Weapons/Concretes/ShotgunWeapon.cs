@@ -7,6 +7,8 @@ public class ShotgunWeapon : Weapon
     [Space(10)]
     [Tooltip("El numero de balas que disparara en un disparo")]
     [SerializeField] int numberBullets = 3;
+    [Range(0, 45)]
+    [SerializeField] int spreadAngle = 10;
     public override void Shot(Transform socket, AudioSource source)
     {
         for (int i = 0; i < numberBullets; i++)
@@ -34,7 +36,7 @@ public class ShotgunWeapon : Weapon
 
     public override void Shot(Transform[] socket, AudioSource source)
     {
-        float addedAngle = 15f;
+        float addedAngle = spreadAngle;
         for (int i = 0; i < socket.Length; i++)
         {
             Quaternion rotation = socket[i].rotation * Quaternion.Inverse(Quaternion.Euler(0.0f, addedAngle * (numberBullets -1), 0.0f));

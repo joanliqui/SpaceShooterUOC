@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   damage: 25
+  maxLifeTime: 1.5
 --- !u!136 &9000940199200071515
 CapsuleCollider:
   m_ObjectHideFlags: 0

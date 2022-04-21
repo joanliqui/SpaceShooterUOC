@@ -7,7 +7,6 @@ public class SimpleBullet : BaseBullet
     private void OnEnable()
     {
         lifeTime = 0;
-        maxLifeTime = 1.5f;
     }
 
     void Update()

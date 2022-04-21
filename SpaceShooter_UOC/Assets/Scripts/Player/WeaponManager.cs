@@ -89,6 +89,8 @@ public class WeaponManager : MonoBehaviour
         }
         Debug.Log(selectWeaponNum);
         selectedWeapon = weapons[selectWeaponNum];
+
+        weaponUI.SetSelectedWeaponUI(selectWeaponNum);
     }
 
     private void InstantiateConcreteWeapon(Weapon wp)

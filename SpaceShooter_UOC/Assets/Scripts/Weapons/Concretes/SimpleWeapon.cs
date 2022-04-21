@@ -39,6 +39,15 @@ public sealed class SimpleWeapon : Weapon
                 shot.transform.rotation = socket[i].rotation;
             }
         }
+        if (source != null)
+        {
+            if (source.clip != clip)
+            {
+                source.clip = clip;
+            }
+
+            source.Play();
+        }
 
     }
 }

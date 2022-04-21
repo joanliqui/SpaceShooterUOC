@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  powerUp: {fileID: 4971690584299570387, guid: 949f81af2322da244b5c305992b9302c, type: 3}
+  powerUp: {fileID: 4971690584299570386, guid: 949f81af2322da244b5c305992b9302c, type: 3}
 --- !u!82 &9035552727380984167
 AudioSource:
   m_ObjectHideFlags: 0

@@ -7,7 +7,7 @@ public class Pool : MonoBehaviour
 {
     [SerializeField] GameObject prefab;
     [SerializeField] private int poolSize = 10;
-    public int cntInPool = 0;
+    private int cntInPool = 0;
 
     Queue<GameObject> objects = new Queue<GameObject>();
 

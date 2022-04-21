@@ -50,6 +50,7 @@ MonoBehaviour:
   bulletPool: {fileID: 9155353395741923643}
   clip: {fileID: 8300000, guid: a0a08fe880cb4ee4880fcad35ac4ba46, type: 3}
   numberBullets: 4
+  spreadAngle: 6
 --- !u!1 &5103191883470744524
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,6 +94,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287ed21b69667fe4db6f9719b1327805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3403755406172049254, guid: 865d8c4d461157c4bbf901a98a506b2c, type: 3}
-  poolSize: 15
-  cntInPool: 2
+  prefab: {fileID: 8616759870412779121, guid: 7974b2c58abfd3e4a91c0011560f8a92, type: 3}
+  poolSize: 20

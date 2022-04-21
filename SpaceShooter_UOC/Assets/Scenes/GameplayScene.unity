@@ -2657,10 +2657,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4471828, guid: 9abf9b3d0f4c24945acec0ce35e5560d, type: 3}
+      propertyPath: movSpeed
+      value: 4000
+      objectReference: {fileID: 0}
     - target: {fileID: 4471830, guid: 9abf9b3d0f4c24945acec0ce35e5560d, type: 3}
       propertyPath: initialWeapon
       value: 
-      objectReference: {fileID: 3945435602147431620, guid: 8d5de5a540e50b649ab1973dd98e6c9c, type: 3}
+      objectReference: {fileID: 5257129293526925912, guid: 3184ec1411fcfde40be6e152b97fbca2, type: 3}
     - target: {fileID: 4471830, guid: 9abf9b3d0f4c24945acec0ce35e5560d, type: 3}
       propertyPath: weaponSockets.Array.data[0]
       value: 

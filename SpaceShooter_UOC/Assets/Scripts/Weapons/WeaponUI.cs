@@ -30,8 +30,15 @@ public class WeaponUI : MonoBehaviour
             if (item.IsEmpty)
             {
                 item.SwitchWeaponImage(wp.WeaponSprite);
+                item.IsEmpty = false;
+                break;
             }
         }
+    }
+
+    public void SetSelectedWeaponUI(int holderNumber)
+    {
+
     }
 
     public void UpgradeWeaponUI(Weapon wp)

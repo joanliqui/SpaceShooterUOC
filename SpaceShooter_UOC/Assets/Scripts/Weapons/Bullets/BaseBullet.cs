@@ -8,7 +8,7 @@ public abstract class BaseBullet : MonoBehaviour, IPoolObject
     [SerializeField] protected int damage;
     protected Camera cam;
     protected Pool pool;
-    protected float maxLifeTime = 2f;
+    [SerializeField] protected float maxLifeTime = 2f;
     protected float lifeTime;
 
     private Collider col;

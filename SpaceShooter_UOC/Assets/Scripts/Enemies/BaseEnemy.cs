@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BaseEnemy : MonoBehaviour, IDamagable
 {
     [SerializeField] protected int health = 50;
-    [SerializeField] protected GameObject powerUp;
+    [SerializeField] protected WeaponPowerUp powerUp;
     protected AudioSource source;
     void Start()
     {
