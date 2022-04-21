@@ -26,6 +26,7 @@ public class SimpleEnemyShip : BaseEnemy, IDamagable
     public override void Destroyed()
     {
         GameObject o = Instantiate(powerUp.gameObject, transform.position, Quaternion.identity);
+        AddPoints();
         gameObject.SetActive(false);
     }
 }

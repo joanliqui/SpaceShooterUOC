@@ -30,12 +30,9 @@ public class WeaponManager : MonoBehaviour
             weapons.Add(initialWeapon);
             selectedWeapon = initialWeapon;
 
-            InstantiateConcreteWeapon(initialWeapon);
         }
         
     }
-
-   
 
     public void Shot()
     {

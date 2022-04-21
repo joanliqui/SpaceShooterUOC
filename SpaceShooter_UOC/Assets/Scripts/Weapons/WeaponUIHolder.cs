@@ -17,6 +17,16 @@ public class WeaponUIHolder : MonoBehaviour
 
     public void SwitchWeaponImage(Sprite sprite)
     {
+        if (isEmpty)
+        {
+            image.enabled = false;
+            return;
+        }
+        else
+        {
+            image.enabled = true;
+        }
         image.sprite = sprite;
     }
+
 }

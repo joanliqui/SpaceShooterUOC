@@ -29,8 +29,8 @@ public class WeaponUI : MonoBehaviour
         {
             if (item.IsEmpty)
             {
-                item.SwitchWeaponImage(wp.WeaponSprite);
                 item.IsEmpty = false;
+                item.SwitchWeaponImage(wp.WeaponSprite);
                 break;
             }
         }
