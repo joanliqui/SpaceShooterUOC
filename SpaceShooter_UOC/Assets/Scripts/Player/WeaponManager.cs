@@ -9,6 +9,7 @@ public class WeaponManager : MonoBehaviour
     private int selectWeaponNum = 0;
 
     [SerializeField] Transform[] weaponSockets = new Transform[2];
+    [SerializeField] Transform arsenal;
 
     private List<Weapon> weapons = new List<Weapon>();
     private WeaponUI weaponUI;
@@ -27,11 +28,33 @@ public class WeaponManager : MonoBehaviour
         if(initialWeapon != null)
         {
             weaponUI.InicializeWeaponHolderUI(initialWeapon);
-            weapons.Add(initialWeapon);
-            selectedWeapon = initialWeapon;
+            InicializeFirstWeapon();
 
         }
         
+    }
+
+    private void InicializeFirstWeapon()
+    {
+        InstantiateConcreteWeapon(initialWeapon);
+        weapons.Add(InstantiateConcreteWeaponObject(initialWeapon));
+        selectedWeapon = initialWeapon;
+        Debug.Log("FirstSelectedWeapon:" + selectedWeapon.name);
+    }
+
+    private Weapon InstantiateConcreteWeaponObject(Weapon wp)
+    {
+        GameObject w = Instantiate(wp.gameObject, arsenal);
+        w.name = "Concrete" + wp.name;
+        if (w.TryGetComponent(out Weapon p))
+        {
+            return p;
+        }
+        else
+        {
+            Debug.LogWarning("No se puedo encontrar una Wapon en el objeto");
+            return null;
+        }
     }
 
     public void Shot()
@@ -64,7 +87,7 @@ public class WeaponManager : MonoBehaviour
         //Si el arma NO esta en la lista la añadimos y actualizamos la UI
         if (!CheckIfWeaponExist(wp))
         {
-            weapons.Add(wp);
+            weapons.Add(InstantiateConcreteWeaponObject(wp));
             weaponUI.InsertNewWeaponInEmptyHolder(wp);
         }
         else

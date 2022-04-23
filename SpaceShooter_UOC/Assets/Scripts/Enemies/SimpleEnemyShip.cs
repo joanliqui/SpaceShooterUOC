@@ -50,6 +50,11 @@ public class SimpleEnemyShip : BaseEnemy, IDamagable
     public override void Destroyed()
     {
         GameObject o = Instantiate(powerUp.gameObject, transform.position, Quaternion.identity);
+
+        GameObject exp = explosionPool.Get();
+        exp.SetActive(true);
+        exp.transform.position = transform.position;
+        
         AddPoints();
         gameObject.SetActive(false);
     }

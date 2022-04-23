@@ -38,7 +38,17 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScorePoints(int points)
     {
-        score += points;
-        scoreText.text = score.ToString();
+        StartCoroutine(AddPointsWithTime(points));
+    }
+
+
+    IEnumerator AddPointsWithTime(int points)
+    {
+        for (int i = 0; i < points; i++)
+        {
+            score++;
+            scoreText.text = score.ToString();
+            yield return new WaitForSeconds(0.007f);
+        }
     }
 }

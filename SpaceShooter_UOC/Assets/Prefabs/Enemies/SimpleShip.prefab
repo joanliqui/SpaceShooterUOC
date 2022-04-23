@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 1601728514868396755}
   - component: {fileID: 1601728514868396756}
   - component: {fileID: 1601728514868396754}
-  - component: {fileID: 9035552727380984167}
   - component: {fileID: 1020456948}
+  - component: {fileID: 9035552727380984167}
   m_Layer: 8
   m_Name: SimpleShip
   m_TagString: Untagged
@@ -86,10 +86,27 @@ MonoBehaviour:
   health: 50
   powerUp: {fileID: 4971690584299570386, guid: 949f81af2322da244b5c305992b9302c, type: 3}
   points: 100
+  explosionPrefab: {fileID: 6395068507869165326, guid: 180b8d26899824fa8884b05d27ab33c2, type: 3}
   socket: {fileID: 4678349044106868872}
   bullet: {fileID: 3403755406172049252, guid: 3bb94a6ca89a5214996f918e785e1692, type: 3}
   timeBtwShots: 1
   weapon: {fileID: 1020456948}
+--- !u!114 &1020456948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6814119579140629153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 101f5e6108e3c534584e95a6a4561996, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeBtwShots: 1.5
+  weaponSprite: {fileID: 0}
+  bulletPool: {fileID: 0}
+  clip: {fileID: 8300000, guid: a0a08fe880cb4ee4880fcad35ac4ba46, type: 3}
 --- !u!82 &9035552727380984167
 AudioSource:
   m_ObjectHideFlags: 0
@@ -186,22 +203,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1020456948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6814119579140629153}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 101f5e6108e3c534584e95a6a4561996, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  timeBtwShots: 1.5
-  weaponSprite: {fileID: 0}
-  bulletPool: {fileID: 0}
-  clip: {fileID: 8300000, guid: a0a08fe880cb4ee4880fcad35ac4ba46, type: 3}
 --- !u!1 &7006762079321624912
 GameObject:
   m_ObjectHideFlags: 0

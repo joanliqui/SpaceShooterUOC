@@ -9,6 +9,8 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable
     [SerializeField] protected WeaponPowerUp powerUp;
     protected AudioSource source;
     [SerializeField] protected int points = 10;
+    [SerializeField] protected GameObject explosionPrefab;
+    [SerializeField] protected Pool explosionPool;
 
     public virtual void Attack()
     {
