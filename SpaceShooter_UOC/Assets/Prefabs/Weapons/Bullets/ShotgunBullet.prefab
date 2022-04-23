@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 8616759870412779120}
   - component: {fileID: 8616759870412779123}
   - component: {fileID: 2612566744805588556}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShotgunBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -23,8 +23,6 @@ public class ShipController : MonoBehaviour
     public float elapsed;
 
 
-
-
     void Start()
     {
         input = GetComponent<InputManager>();

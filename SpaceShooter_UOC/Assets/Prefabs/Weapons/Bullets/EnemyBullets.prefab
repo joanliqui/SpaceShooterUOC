@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3403755406172049255}
   - component: {fileID: 3403755406172049252}
   - component: {fileID: 9000940199200071515}
-  m_Layer: 10
-  m_Name: SimpleBullet
+  m_Layer: 9
+  m_Name: EnemyBullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 50
   damage: 25
-  maxLifeTime: 1.5
+  maxLifeTime: 2.2
 --- !u!136 &9000940199200071515
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cb7fbe47f97e71a41ba587d8a5cd5b00, type: 2}
+  - {fileID: 2100000, guid: fca73126aed37d4488a82c44bcf997cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -37,7 +37,6 @@ public abstract class BaseBullet : MonoBehaviour, IPoolObject
         {
             damaged.Damaged(damage);
             pool.ReturnToPool(this.gameObject);
-
         }
     }
 

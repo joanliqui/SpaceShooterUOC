@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - WeaponUI
+  - EnemyPool
   layers:
   - Default
   - TransparentFX
@@ -13,10 +14,10 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
-  - 
-  - 
+  - Borders
+  - Enemy
+  - EnemyBullet
+  - PlayerBullet
   - 
   - 
   - 

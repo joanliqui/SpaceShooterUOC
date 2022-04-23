@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour, IDamagable
 {
+    [SerializeField] protected int movSpeed = 10;
     [SerializeField] protected int health = 50;
     [SerializeField] protected WeaponPowerUp powerUp;
     protected AudioSource source;
