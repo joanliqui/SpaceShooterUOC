@@ -28,4 +28,17 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void Start()
+    {
+        maxScore = scoreSO.maxScore;
+        score = 0;
+        scoreText.text = "0";
+    }
+
+    public void AddScorePoints(int points)
+    {
+        score += points;
+        scoreText.text = score.ToString();
+    }
 }

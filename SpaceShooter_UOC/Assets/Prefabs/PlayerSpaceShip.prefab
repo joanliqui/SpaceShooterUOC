@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1965345674}
   m_Layer: 0
-  m_Name: WeaponSocket
+  m_Name: R_WeaponSocket
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -40,9 +40,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5239507847206979826}
   m_Layer: 0
-  m_Name: WeaponSocket (1)
+  m_Name: L_WeaponSocket
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb2723d69ab56db4ab4b29a06d52fff9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movSpeed: 2500
+  movSpeed: 4000
   rotationSpeed: 1
   maxRotation: 25
   elapsed: 0
@@ -163,7 +163,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initialWeapon: {fileID: 5257129293526925912, guid: 3184ec1411fcfde40be6e152b97fbca2, type: 3}
-  weaponSocket: {fileID: 1965345674}
+  weaponSockets:
+  - {fileID: 5239507847206979826}
+  - {fileID: 1965345674}
 --- !u!54 &8249936668155711078
 Rigidbody:
   m_ObjectHideFlags: 0

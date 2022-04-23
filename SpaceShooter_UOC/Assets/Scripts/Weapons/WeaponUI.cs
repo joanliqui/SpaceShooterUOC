@@ -5,6 +5,7 @@ using UnityEngine;
 public class WeaponUI : MonoBehaviour
 {
     [SerializeField] List<WeaponUIHolder> holders = new List<WeaponUIHolder>();
+    [SerializeField] Transform selectionGUI; 
 
     //Resetea todos los holders y añade al primer holder un arma
     public void InicializeWeaponHolderUI(Weapon firstWeapon)
@@ -38,7 +39,8 @@ public class WeaponUI : MonoBehaviour
 
     public void SetSelectedWeaponUI(int holderNumber)
     {
-
+        selectionGUI.SetParent(holders[holderNumber].transform);
+        selectionGUI.position = holders[holderNumber].transform.position;
     }
 
     public void UpgradeWeaponUI(Weapon wp)

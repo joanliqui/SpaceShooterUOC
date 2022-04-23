@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class PauseManager : MonoBehaviour
     private bool isPaused = false;
     [SerializeField] Button pauseButton;
     [SerializeField] TextMeshProUGUI maxScoreText;
+    [SerializeField] GameObject normalPauseUI;
+    [SerializeField] GameObject questionUI;
+
+
     public static PauseManager Instance { get => _instance; }
 
     void Awake()
@@ -25,12 +30,11 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        maxScoreText.text = ScoreManager.Instance.MaxScore.ToString();
-    }
     private void Start()
     {
+        isPaused = false;
+        maxScoreText.text = ScoreManager.Instance.MaxScore.ToString();
+        questionUI.SetActive(false);
         pauseMenu.SetActive(false);
     }
 
@@ -39,7 +43,9 @@ public class PauseManager : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0.0f;
         pauseButton.interactable = false;
+
         pauseMenu.SetActive(true);
+        normalPauseUI.SetActive(true);
     }
 
     public void Resume()
@@ -48,5 +54,23 @@ public class PauseManager : MonoBehaviour
         pauseButton.interactable = true;
         Time.timeScale = 1.0f;
         pauseMenu.SetActive(false);
+    }
+
+    public void MainMenuButton()
+    {
+        normalPauseUI.SetActive(false);
+        questionUI.SetActive(true);
+    }
+
+    public void GoMainMenu()
+    {
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene("MainMenuScene");
+    }
+
+    public void BackToNormalPause()
+    {
+        questionUI.SetActive(false);
+        normalPauseUI.SetActive(true);
     }
 }

@@ -26,6 +26,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable
 
     public virtual void AddPoints()
     {
-        ScoreManager.Instance.Score += points;
+        ScoreManager.Instance.AddScorePoints(points);
     }
 }

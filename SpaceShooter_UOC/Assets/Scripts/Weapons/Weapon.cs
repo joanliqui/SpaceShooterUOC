@@ -7,7 +7,7 @@ public abstract class Weapon : MonoBehaviour
     //[SerializeField] protected GameObject bulletPrefab;
     [SerializeField] protected float timeBtwShots = 0.1f;
     [SerializeField] protected Sprite weaponSprite;
-    [SerializeField] protected int damage;
+    //[SerializeField] protected int damage;
     [SerializeField] protected Pool bulletPool;
     [SerializeField] protected AudioClip clip;
 
@@ -15,7 +15,7 @@ public abstract class Weapon : MonoBehaviour
     protected int maxWeaponLvl = 3;
     public Sprite WeaponSprite { get => weaponSprite;}
     public float TimeBtwShots { get => timeBtwShots; set => timeBtwShots = value; }
-    public int Damage { get => damage; set => damage = value; }
+    //public int Damage { get => damage; set => damage = value; }
 
 
     public virtual void Shot(Transform socket, AudioSource source)
