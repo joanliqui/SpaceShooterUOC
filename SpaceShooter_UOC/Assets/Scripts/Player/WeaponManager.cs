@@ -22,8 +22,10 @@ public class WeaponManager : MonoBehaviour
 
     private void Start()
     {
-        weaponUI = GameObject.FindGameObjectWithTag("WeaponUI").GetComponent<WeaponUI>();
-        source = GetComponent<AudioSource>();
+        if(weaponUI == null)
+            weaponUI = GameObject.FindGameObjectWithTag("WeaponUI").GetComponent<WeaponUI>();
+        if(source == null)
+            source = GetComponent<AudioSource>();
 
         if(initialWeapon != null)
         {
@@ -62,7 +64,16 @@ public class WeaponManager : MonoBehaviour
         cntTimeBtwShots = selectedWeapon.TimeBtwShots;
         canShot = false;
         if(selectedWeapon != null)
-            selectedWeapon.Shot(weaponSockets, source);
+        {
+            if(weaponSockets != null)
+            {
+                selectedWeapon.Shot(weaponSockets, source);
+            }
+        }
+        else
+        {
+            Debug.LogWarning("No selected Weapon");
+        }
 
     }
     public bool CanShot()
@@ -97,7 +108,15 @@ public class WeaponManager : MonoBehaviour
     }
     private bool CheckIfWeaponExist(Weapon wp)
     {
-        return weapons.Contains(wp);
+        bool found = false;
+        foreach (Weapon item in weapons)
+        {
+            if(item.GetType() == wp.GetType())
+            {
+                found = true; 
+            }
+        }
+        return found;
     }
 
     public void SwitchSelectedWeapon()

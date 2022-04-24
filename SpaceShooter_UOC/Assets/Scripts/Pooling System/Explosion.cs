@@ -34,7 +34,6 @@ public class Explosion : MonoBehaviour, IPoolObject
     public void Awake()
     {
         ps = GetComponent<ParticleSystem>();
-        //ps.playOnAwake = false;
     }
 
 }

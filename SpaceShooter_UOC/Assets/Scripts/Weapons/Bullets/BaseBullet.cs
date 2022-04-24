@@ -10,13 +10,26 @@ public abstract class BaseBullet : MonoBehaviour, IPoolObject
     protected Pool pool;
     [SerializeField] protected float maxLifeTime = 2f;
     protected float lifeTime;
-
-    private Collider col;
+    protected Pool impactParticlePool; 
+    protected Collider col;
+    protected AudioSource hitSource;
+    protected bool hit = false; 
 
     private void Awake()
     {
         cam = Camera.main;
         col = GetComponent<Collider>();
+        impactParticlePool = GameObject.FindGameObjectWithTag("BulletParticlePool").GetComponent<Pool>();
+        if(hitSource == null)
+        {
+            hitSource = GetComponent<AudioSource>();
+        }
+    }
+
+
+    private void OnEnable()
+    {
+        hit = false;
     }
 
     public Pool Pool
@@ -35,9 +48,21 @@ public abstract class BaseBullet : MonoBehaviour, IPoolObject
     {
         if(other.TryGetComponent<IDamagable>(out IDamagable damaged))
         {
+            hit = true;
             damaged.Damaged(damage);
-            pool.ReturnToPool(this.gameObject);
+            GameObject g = impactParticlePool.Get();
+            g.SetActive(true);
+            g.transform.position = transform.position;
+            hitSource.Play();
+            StartCoroutine(Deacivate());
         }
+    }
+
+    protected virtual IEnumerator Deacivate()
+    {
+        col.enabled = false;
+        yield return new WaitForSeconds(1.5f);
+        pool.ReturnToPool(this.gameObject);
     }
 
     protected bool IsInView()

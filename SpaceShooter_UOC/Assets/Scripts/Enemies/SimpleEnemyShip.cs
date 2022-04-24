@@ -6,7 +6,6 @@ public class SimpleEnemyShip : BaseEnemy, IDamagable
 {
     [Space(10)]
     [SerializeField] Transform socket;
-    [SerializeField] BaseBullet bullet;
     [SerializeField] float timeBtwShots;
     [SerializeField] Weapon weapon;
     private bool canShot = false; 
@@ -15,6 +14,10 @@ public class SimpleEnemyShip : BaseEnemy, IDamagable
         source = GetComponent<AudioSource>();
         StartCoroutine(Shooting());
         timeBtwShots = weapon.TimeBtwShots;
+        if(weapon.BulletPool == null)
+        {
+            weapon.BulletPool = GameObject.FindGameObjectWithTag("EnemyPool").GetComponent<Pool>();
+        }
     }
 
     void Update()
@@ -47,15 +50,4 @@ public class SimpleEnemyShip : BaseEnemy, IDamagable
         }
     }
 
-    public override void Destroyed()
-    {
-        GameObject o = Instantiate(powerUp.gameObject, transform.position, Quaternion.identity);
-
-        GameObject exp = explosionPool.Get();
-        exp.SetActive(true);
-        exp.transform.position = transform.position;
-        
-        AddPoints();
-        gameObject.SetActive(false);
-    }
 }

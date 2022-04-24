@@ -25,9 +25,12 @@ public class ShipController : MonoBehaviour
 
     void Start()
     {
-        input = GetComponent<InputManager>();
+        if(input == null)
+            input = GetComponent<InputManager>();
         rb = GetComponent<Rigidbody>();
-        weaponManager = GetComponent<WeaponManager>();
+        if(weaponManager == null)
+            weaponManager = GetComponent<WeaponManager>();
+
         initialRotation = transform.localEulerAngles;
     }
 

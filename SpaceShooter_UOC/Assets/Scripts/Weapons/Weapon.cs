@@ -15,6 +15,8 @@ public abstract class Weapon : MonoBehaviour
     protected int maxWeaponLvl = 3;
     public Sprite WeaponSprite { get => weaponSprite;}
     public float TimeBtwShots { get => timeBtwShots; set => timeBtwShots = value; }
+    public Pool BulletPool { get => bulletPool; set => bulletPool = value; }
+
     //public int Damage { get => damage; set => damage = value; }
 
 

@@ -46,4 +46,9 @@ public class InputManager : MonoBehaviour
     {
         _input.Enable();
     }
+
+    private void OnDisable()
+    {
+        _input.Disable();
+    }
 }
