@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbde816af405eba4fbb0554293110b5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 3945435602147431620, guid: 8d5de5a540e50b649ab1973dd98e6c9c, type: 3}
+  weapon: {fileID: 5244732333866187754, guid: bb94a76b3120a5c44ae64fe0f1073c68, type: 3}
   points: 10
   movSpeed: 10
 --- !u!82 &5868934906537676331

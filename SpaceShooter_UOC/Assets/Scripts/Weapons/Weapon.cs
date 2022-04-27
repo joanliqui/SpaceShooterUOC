@@ -10,12 +10,14 @@ public abstract class Weapon : MonoBehaviour
     //[SerializeField] protected int damage;
     [SerializeField] protected Pool bulletPool;
     [SerializeField] protected AudioClip clip;
+    [SerializeField] protected bool fromOneSocket;
 
     protected int weaponLvl = 1;
     protected int maxWeaponLvl = 3;
     public Sprite WeaponSprite { get => weaponSprite;}
     public float TimeBtwShots { get => timeBtwShots; set => timeBtwShots = value; }
     public Pool BulletPool { get => bulletPool; set => bulletPool = value; }
+    public bool FromOneSocket { get => fromOneSocket; }
 
     //public int Damage { get => damage; set => damage = value; }
 

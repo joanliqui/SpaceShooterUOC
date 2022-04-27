@@ -67,9 +67,16 @@ public class WeaponManager : MonoBehaviour
         canShot = false;
         if(selectedWeapon != null)
         {
-            if(weaponSockets != null)
+            if (selectedWeapon.FromOneSocket)
             {
-                selectedWeapon.Shot(weaponSockets, source);
+                selectedWeapon.Shot(weaponSockets[0], source);
+            }
+            else
+            {
+                if(weaponSockets != null)
+                {
+                    selectedWeapon.Shot(weaponSockets, source);
+                }
             }
         }
         else
