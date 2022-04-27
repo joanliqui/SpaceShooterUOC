@@ -27,7 +27,8 @@ public class ShipController : MonoBehaviour
     {
         if(input == null)
             input = GetComponent<InputManager>();
-        rb = GetComponent<Rigidbody>();
+        if(rb == null)
+            rb = GetComponent<Rigidbody>();
         if(weaponManager == null)
             weaponManager = GetComponent<WeaponManager>();
 

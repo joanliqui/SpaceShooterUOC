@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     int nActualRound;
     Round actualRound;
     int frameRound;
+    [SerializeField] UnityEvent OnRoundFinished;
 
 
     private void Awake()
@@ -37,15 +39,15 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(actualRound != null)
+        if(actualRound != null && actualRound.InRound)
         {
             if(frameRound % 3 == 0) //Para no estar ejecutando la logica a cada frame
             {
-                if (actualRound.RoundFinished())
+                if (actualRound.IsRoundFinished())
                 {
-                    nActualRound++;
+                    actualRound.InRound = false;
                     actualRound = null;
-                    Debug.Log("Ronda Acabada!");
+                    OnRoundFinished?.Invoke();
                 }
             }
             frameRound++;
@@ -71,6 +73,16 @@ public class GameManager : MonoBehaviour
         foreach (Round item in rounds)
         {
             item.InicialiceRound();
+        }
+    }
+
+    public void NextRound()
+    {
+        if(nActualRound < rounds.Count - 1)
+        {
+             nActualRound++;
+            actualRound = rounds[nActualRound];
+            actualRound.Play();
         }
     }
 }

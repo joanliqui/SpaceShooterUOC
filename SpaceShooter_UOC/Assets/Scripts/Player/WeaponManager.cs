@@ -26,12 +26,12 @@ public class WeaponManager : MonoBehaviour
             weaponUI = GameObject.FindGameObjectWithTag("WeaponUI").GetComponent<WeaponUI>();
         if(source == null)
             source = GetComponent<AudioSource>();
+        
 
         if(initialWeapon != null)
         {
             weaponUI.InicializeWeaponHolderUI(initialWeapon);
             InicializeFirstWeapon();
-
         }
         
     }
@@ -40,6 +40,7 @@ public class WeaponManager : MonoBehaviour
     {
         InstantiateConcreteWeapon(initialWeapon);
         weapons.Add(InstantiateConcreteWeaponObject(initialWeapon));
+        selectedWeapon = null;
         selectedWeapon = initialWeapon;
         Debug.Log("FirstSelectedWeapon:" + selectedWeapon.name);
     }
@@ -58,6 +59,7 @@ public class WeaponManager : MonoBehaviour
             return null;
         }
     }
+
 
     public void Shot()
     {
@@ -126,7 +128,6 @@ public class WeaponManager : MonoBehaviour
         {
             selectWeaponNum = 0;
         }
-        Debug.Log(selectWeaponNum);
         selectedWeapon = weapons[selectWeaponNum];
 
         weaponUI.SetSelectedWeaponUI(selectWeaponNum);

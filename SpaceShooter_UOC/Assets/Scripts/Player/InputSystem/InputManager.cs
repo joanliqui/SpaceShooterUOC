@@ -16,7 +16,9 @@ public class InputManager : MonoBehaviour
     [SerializeField] UnityEvent onSwitchWeaponClick;
     private void Awake()
     {
-        _input = new PlayerControls();
+        if(_input == null)
+            _input = new PlayerControls();
+
         _input.Ship.Move.performed += onMove;
         _input.Ship.Move.canceled += onMove;
 
@@ -49,6 +51,8 @@ public class InputManager : MonoBehaviour
 
     private void OnDisable()
     {
+        _input.Ship.Shot.performed -= onShot;
+        _input.Ship.Shot.canceled += onShot;
         _input.Disable();
     }
 }

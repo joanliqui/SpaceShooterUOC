@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ScoreData", menuName = "ScoreData")]
 public class ScoreSO : ScriptableObject
 {
-    public int score;
     public int maxScore;
     PlayerPrefsSerializer serializer;
     private void OnEnable()
@@ -17,5 +16,11 @@ public class ScoreSO : ScriptableObject
     public void SetMaxScore(int maxScore)
     {
         this.maxScore = maxScore;
+    }
+
+    [ContextMenu("Delete PlayerPrefs Data")]
+    private void CleanPlayerPrefs()
+    {
+        PlayerPrefs.DeleteKey("maxScore");
     }
 }

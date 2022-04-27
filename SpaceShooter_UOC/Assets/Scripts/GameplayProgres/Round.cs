@@ -9,6 +9,8 @@ public class Round
     [SerializeField] bool inRound;
     [SerializeField] int totalEnemies;
 
+    public bool InRound { get => inRound; set => inRound = value; }
+
     public void InicialiceRound()
     {
         int t = 0;
@@ -29,7 +31,7 @@ public class Round
         }
     }
 
-    public bool RoundFinished()
+    public bool IsRoundFinished()
     {
         int n = 0;
         foreach (SpawnerRound item in enemysRound)
