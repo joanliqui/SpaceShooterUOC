@@ -138,7 +138,6 @@ public class WeaponManager : MonoBehaviour
         if(wp != null)
         {
             GameObject w = Instantiate(wp.gameObject, weaponSockets[0].position, Quaternion.Euler(0.0f, 90f, 0.0f), weaponSockets[0]);
-            
         }
     }
 }
