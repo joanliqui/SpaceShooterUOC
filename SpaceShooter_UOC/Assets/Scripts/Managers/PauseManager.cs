@@ -14,7 +14,7 @@ public class PauseManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI maxScoreText;
     [SerializeField] GameObject normalPauseUI;
     [SerializeField] GameObject questionUI;
-
+    InputManager inputs;
 
     public static PauseManager Instance { get => _instance; }
 
@@ -32,14 +32,19 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
+        inputs = GameObject.FindGameObjectWithTag("Player").GetComponent<InputManager>();
         isPaused = false;
-        maxScoreText.text = ScoreManager.Instance.MaxScore.ToString();
-        questionUI.SetActive(false);
-        pauseMenu.SetActive(false);
+        if(maxScoreText)
+            maxScoreText.text = ScoreManager.Instance.MaxScore.ToString();
+        if(questionUI)
+            questionUI.SetActive(false);
+        if(pauseMenu)
+            pauseMenu.SetActive(false);
     }
 
     public void Pause()
     {
+        inputs.DisconnectInput();
         isPaused = true;
         Time.timeScale = 0.0f;
         pauseButton.interactable = false;
@@ -50,6 +55,7 @@ public class PauseManager : MonoBehaviour
 
     public void Resume()
     {
+        inputs.ConnectInput();
         isPaused = false;
         pauseButton.interactable = true;
         Time.timeScale = 1.0f;

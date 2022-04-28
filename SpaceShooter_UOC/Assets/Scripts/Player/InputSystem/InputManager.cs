@@ -51,8 +51,16 @@ public class InputManager : MonoBehaviour
 
     private void OnDisable()
     {
-        _input.Ship.Shot.performed -= onShot;
-        _input.Ship.Shot.canceled += onShot;
         _input.Disable();
+    }
+
+    public void ConnectInput()
+    {
+        _input.Ship.Enable();
+    }
+
+    public void DisconnectInput()
+    {
+        _input.Ship.Disable();
     }
 }

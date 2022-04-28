@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,7 +18,11 @@ public class GameManager : MonoBehaviour
     int nActualRound;
     Round actualRound;
     int frameRound;
+    [SerializeField] UnityEvent OnGameBegins;
     [SerializeField] UnityEvent OnRoundFinished;
+    [SerializeField] UnityEvent OnGameFinished;
+    private bool noMoreRounds = false;
+    private GameObject[] enemies;
 
 
     private void Awake()
@@ -26,11 +31,11 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
+        //InicializePlayer();
     }
     void Start()
     {
-        
-        InicializePlayer();
+        OnGameBegins?.Invoke(); //Para que objetos agenos al Manager hagan sus cosas
         InicializeRounds();
         nActualRound = 0;
         actualRound = rounds[nActualRound];
@@ -39,18 +44,22 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(actualRound != null && actualRound.InRound)
+        if (!noMoreRounds)
         {
-            if(frameRound % 3 == 0) //Para no estar ejecutando la logica a cada frame
+            if(actualRound != null && actualRound.InRound)
             {
-                if (actualRound.IsRoundFinished())
+                if(frameRound % 3 == 0) //Para no estar ejecutando la logica a cada frame
                 {
-                    actualRound.InRound = false;
-                    actualRound = null;
-                    OnRoundFinished?.Invoke();
+                    if (actualRound.IsRoundFinished())
+                    {
+                        actualRound.InRound = false;
+                        actualRound = null;
+                        noMoreRounds = true;
+                        OnRoundFinished?.Invoke();
+                    }
                 }
+                frameRound++;
             }
-            frameRound++;
         }
     }
 
@@ -76,13 +85,29 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void NextRound()
+    public void NextRound()//Se llama desde el Invoke
     {
         if(nActualRound < rounds.Count - 1)
         {
-             nActualRound++;
+            nActualRound++;
             actualRound = rounds[nActualRound];
             actualRound.Play();
         }
+        else
+        {
+            OnGameFinished?.Invoke();
+        }
+    }
+
+
+    public void ReloadGamePlay()
+    {
+        int sc = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(sc);
+    }
+
+    public void BackToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenuScene");
     }
 }
