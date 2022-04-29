@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class PauseManager : MonoBehaviour
 {
@@ -14,7 +15,10 @@ public class PauseManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI maxScoreText;
     [SerializeField] GameObject normalPauseUI;
     [SerializeField] GameObject questionUI;
-    InputManager inputs;
+
+
+    [SerializeField] UnityEvent OnPauseOn;
+    [SerializeField] UnityEvent OnPauseOff;
 
     public static PauseManager Instance { get => _instance; }
 
@@ -32,7 +36,6 @@ public class PauseManager : MonoBehaviour
 
     private void Start()
     {
-        inputs = GameObject.FindGameObjectWithTag("Player").GetComponent<InputManager>();
         isPaused = false;
         if(maxScoreText)
             maxScoreText.text = ScoreManager.Instance.MaxScore.ToString();
@@ -44,22 +47,24 @@ public class PauseManager : MonoBehaviour
 
     public void Pause()
     {
-        inputs.DisconnectInput();
+        
         isPaused = true;
         Time.timeScale = 0.0f;
         pauseButton.interactable = false;
 
         pauseMenu.SetActive(true);
         normalPauseUI.SetActive(true);
+        OnPauseOn?.Invoke();
     }
 
     public void Resume()
     {
-        inputs.ConnectInput();
+        
         isPaused = false;
         pauseButton.interactable = true;
         Time.timeScale = 1.0f;
         pauseMenu.SetActive(false);
+        OnPauseOff?.Invoke();
     }
 
     public void MainMenuButton()
