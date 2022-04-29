@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("Player")]
     [SerializeField] GameObject playerShip;
     private Transform startPoint;
+    private InputManager input;
 
     [Header("Rounds")]
     [SerializeField] List<Round> rounds;
@@ -22,7 +23,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] UnityEvent OnRoundFinished;
     [SerializeField] UnityEvent OnGameFinished;
     private bool noMoreRounds = false;
-    private GameObject[] enemies;
 
 
     private void Awake()
@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        input = GameObject.FindGameObjectWithTag("Player").GetComponent<InputManager>();
+
         OnGameBegins?.Invoke(); //Para que objetos agenos al Manager hagan sus cosas
         InicializeRounds();
         nActualRound = 0;
@@ -55,10 +57,18 @@ public class GameManager : MonoBehaviour
                         actualRound.InRound = false;
                         actualRound = null;
                         noMoreRounds = true;
+                        frameRound = 0;
                         OnRoundFinished?.Invoke();
                     }
                 }
                 frameRound++;
+            }
+        }
+        else
+        {
+            if(frameRound == 3)
+            {
+                OnGameFinished?.Invoke();
             }
         }
     }
@@ -109,5 +119,17 @@ public class GameManager : MonoBehaviour
     public void BackToMainMenu()
     {
         SceneManager.LoadScene("MainMenuScene");
+    }
+
+    public void PlayerInput(bool t)
+    {
+        if (t)
+        {
+            input.ConnectInput();
+        }
+        else
+        {
+            input.DisconnectInput();
+        }
     }
 }

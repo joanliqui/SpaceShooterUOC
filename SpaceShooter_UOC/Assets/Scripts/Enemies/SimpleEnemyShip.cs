@@ -22,10 +22,13 @@ public class SimpleEnemyShip : BaseEnemy, IDamagable
 
     void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * movSpeed);
-        if (canShot)
+        if (isAlive)
         {
-            StartCoroutine(Shooting());
+            transform.Translate(Vector3.forward * Time.deltaTime * movSpeed);
+            if (canShot)
+            {
+                StartCoroutine(Shooting());
+            }
         }
     }
     

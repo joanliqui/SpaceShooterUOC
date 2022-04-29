@@ -7,9 +7,10 @@ public class Round
 {
     [SerializeField] List<SpawnerRound> enemysRound;
     [SerializeField] bool inRound;
-    [SerializeField] int totalEnemies;
+    [SerializeField] int totalEnemiesInRound;
 
     public bool InRound { get => inRound; set => inRound = value; }
+    public int TotalEnemiesInRound { get => totalEnemiesInRound; set => totalEnemiesInRound = value; }
 
     public void InicialiceRound()
     {
@@ -19,7 +20,7 @@ public class Round
             item.InicializeSpawner();
             t += item.Cantidad;
         }
-        totalEnemies = t;
+        totalEnemiesInRound = t;
     }
 
     public void Play()
@@ -27,22 +28,14 @@ public class Round
         inRound = true;
         foreach (SpawnerRound item in enemysRound)
         {
-            item.SpawnEnemies();
+            item.SpawnEnemies(this);
         }
     }
 
     public bool IsRoundFinished()
     {
-        int n = 0;
-        foreach (SpawnerRound item in enemysRound)
-        {
-            if (item.FinishSpawning())
-            {
-                n++;
-            }
-        }
 
-        return n == enemysRound.Count;
+        return totalEnemiesInRound <= 0;
 
     }
 }

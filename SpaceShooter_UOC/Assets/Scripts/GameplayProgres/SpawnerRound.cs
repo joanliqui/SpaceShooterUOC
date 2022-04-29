@@ -15,9 +15,9 @@ public class SpawnerRound
     {
         spawner.InicializeSpawner(timeSpawn);
     }
-    public void SpawnEnemies()
+    public void SpawnEnemies(Round round)
     {
-        spawner.SpawnEnemy(cantidad);
+        spawner.SpawnEnemy(cantidad, round);
     }
 
     public bool FinishSpawning()

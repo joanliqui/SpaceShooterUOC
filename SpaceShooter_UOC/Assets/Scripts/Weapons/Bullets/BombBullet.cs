@@ -28,11 +28,11 @@ public class BombBullet : BaseBullet
         Collider[] hitColliders = Physics.OverlapSphere(center, radius);
         foreach (var hitCollider in hitColliders) ;
         {
-            Rigidbody rb = hit.GetComponent<Rigidbody>();
-            if (rb != null)
-            {
-                rb.AddExplosionForceCenter(power, center, radius);
-            }
+            //Rigidbody rb = hit.GetComponent<Rigidbody>();
+            //if (rb != null)
+            //{
+              //  rb.AddExplosionForceCenter(power, center, radius);
+            //}
         }
     }
 }

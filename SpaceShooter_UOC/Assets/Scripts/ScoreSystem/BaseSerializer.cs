@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseSerializer
 {
-    public virtual void SaveMaxScore()
+    public virtual void SaveMaxScore(int value)
     {
 
     }

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerPrefsSerializer : BaseSerializer
 {
-    public override void SaveMaxScore()
+    public override void SaveMaxScore(int value)
     {
-        PlayerPrefs.SetInt("maxScore", 0);
+        PlayerPrefs.SetInt("maxScore", value);
     }
     public override int LoadMaxScore()
     {

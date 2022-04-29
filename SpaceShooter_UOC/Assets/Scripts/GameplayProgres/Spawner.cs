@@ -28,14 +28,14 @@ public class Spawner : MonoBehaviour
     }
     
     [ContextMenu("SpawnEnemy")]
-    public void SpawnEnemy(int cantidad)
+    public void SpawnEnemy(int cantidad, Round round)
     {
         inUse = true;
         finished = false;
-        StartCoroutine(SpawnWaiting(cantidad));
+        StartCoroutine(SpawnWaiting(cantidad, round));
     }
 
-    IEnumerator SpawnWaiting(int cantidad)
+    IEnumerator SpawnWaiting(int cantidad, Round round)
     {
         for (int i = 0; i < cantidad; i++)
         {
@@ -44,6 +44,11 @@ public class Spawner : MonoBehaviour
             shot.SetActive(true);
             shot.transform.position = transform.position;
             shot.transform.rotation = transform.rotation;
+
+            if(shot.TryGetComponent<IRoundObject>(out IRoundObject t))
+            {
+                t.Round = round;
+            }
 
             Spawned?.Invoke();
         }

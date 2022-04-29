@@ -41,7 +41,7 @@ public class WeaponManager : MonoBehaviour
         InstantiateConcreteWeapon(initialWeapon);
         weapons.Add(InstantiateConcreteWeaponObject(initialWeapon));
         selectedWeapon = null;
-        selectedWeapon = initialWeapon;
+        selectedWeapon = weapons[0];
         Debug.Log("FirstSelectedWeapon:" + selectedWeapon.name);
     }
 

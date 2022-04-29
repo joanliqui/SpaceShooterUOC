@@ -6,8 +6,9 @@ public class ScoreManager : MonoBehaviour
 {
     private int maxScore = 0;
     private int score;
-    [SerializeField] ScoreSO scoreSO; 
+    [SerializeField] ScoreSO scoreSO;
 
+    private int visualScore;
     [SerializeField] TextMeshProUGUI scoreText;
     private static ScoreManager _instance;
 
@@ -33,11 +34,13 @@ public class ScoreManager : MonoBehaviour
     {
         maxScore = scoreSO.maxScore;
         score = 0;
+        visualScore = 0;
         scoreText.text = "0";
     }
 
     public void AddScorePoints(int points)
     {
+        score += points;
         StartCoroutine(AddPointsWithTime(points));
     }
 
@@ -46,9 +49,15 @@ public class ScoreManager : MonoBehaviour
     {
         for (int i = 0; i < points; i++)
         {
-            score++;
-            scoreText.text = score.ToString();
+            visualScore++;
+            scoreText.text = visualScore.ToString();
             yield return new WaitForSeconds(0.007f);
         }
+    }
+
+    public void SaveMaxScore()
+    {
+        maxScore = score;
+        scoreSO.SetMaxScore(maxScore);
     }
 }

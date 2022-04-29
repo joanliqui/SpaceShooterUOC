@@ -16,7 +16,15 @@ public class ScoreSO : ScriptableObject
     public void SetMaxScore(int maxScore)
     {
         this.maxScore = maxScore;
+        SaveMaxScorePrefs();
     }
+
+    private void SaveMaxScorePrefs()
+    {
+        serializer.SaveMaxScore(maxScore);
+    }
+
+
 
     [ContextMenu("Delete PlayerPrefs Data")]
     private void CleanPlayerPrefs()

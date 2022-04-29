@@ -9,6 +9,8 @@ TagManager:
   - ExplosionPool
   - BulletParticlePool
   - Enemy
+  - PowerUp
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
