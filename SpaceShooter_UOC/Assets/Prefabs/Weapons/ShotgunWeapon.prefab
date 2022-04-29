@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBtwShots: 1
-  weaponSprite: {fileID: 21300000, guid: 12fd0fb712c762e4a83ac9e09e2fca98, type: 3}
+  weaponSprite: {fileID: -3155254064159185449, guid: b528575f957e61642ac93ceaec94a3e7, type: 3}
   bulletPool: {fileID: 9155353395741923643}
   clip: {fileID: 8300000, guid: a0a08fe880cb4ee4880fcad35ac4ba46, type: 3}
+  fromOneSocket: 0
   numberBullets: 4
   spreadAngle: 6
 --- !u!1 &5103191883470744524

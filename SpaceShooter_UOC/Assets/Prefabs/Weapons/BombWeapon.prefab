@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 287ed21b69667fe4db6f9719b1327805, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 3403755406172049254, guid: 865d8c4d461157c4bbf901a98a506b2c, type: 3}
+  prefab: {fileID: 3403755406172049254, guid: 0c33536b83d2f784e857963038657ec1, type: 3}
   poolSize: 10
 --- !u!1 &6108441021188764239
 GameObject:
@@ -54,7 +54,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6108441021188764237}
-  - component: {fileID: 6108441021188764238}
+  - component: {fileID: -6983136268091200625}
   m_Layer: 0
   m_Name: BombWeapon
   m_TagString: Untagged
@@ -77,7 +77,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6108441021188764238
+--- !u!114 &-6983136268091200625
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,10 +86,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6108441021188764239}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 101f5e6108e3c534584e95a6a4561996, type: 3}
+  m_Script: {fileID: 11500000, guid: 378d8b51d0c3abe4ca9ac0a940ec650a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBtwShots: 1.5
-  weaponSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  timeBtwShots: 2
+  weaponSprite: {fileID: -1908677672136909250, guid: b528575f957e61642ac93ceaec94a3e7, type: 3}
   bulletPool: {fileID: 2092717042859851699}
-  clip: {fileID: 8300000, guid: a0a08fe880cb4ee4880fcad35ac4ba46, type: 3}
+  clip: {fileID: 8300000, guid: 89adc2a58fcd47e44954296c7bde5e81, type: 3}
+  fromOneSocket: 0

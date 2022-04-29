@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBtwShots: 0.5
-  weaponSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  weaponSprite: {fileID: 5267001826265071841, guid: b528575f957e61642ac93ceaec94a3e7, type: 3}
   bulletPool: {fileID: 88465140366266277}
   clip: {fileID: 8300000, guid: a0a08fe880cb4ee4880fcad35ac4ba46, type: 3}
+  fromOneSocket: 0

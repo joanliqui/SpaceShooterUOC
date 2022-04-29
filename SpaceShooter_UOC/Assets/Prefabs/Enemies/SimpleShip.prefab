@@ -66,7 +66,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movSpeed: 20
   health: 75
-  powerUp: {fileID: 4971690584299570386, guid: 949f81af2322da244b5c305992b9302c, type: 3}
+  powerUp: {fileID: 1009062517045779337, guid: e61bb20d6fcb4194889cbc0f0ff2c723, type: 3}
   points: 200
   explosionPrefab: {fileID: 6395068507869165326, guid: 180b8d26899824fa8884b05d27ab33c2, type: 3}
   explosion: {fileID: 9035552727380984167}

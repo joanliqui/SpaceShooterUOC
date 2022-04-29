@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class SimpleBullet : BaseBullet
 {
-    GameObject mesh;   
-    private void OnEnable()
-    {
-        lifeTime = 0;
-        hit = false;
-    }
+     
 
     private void Start()
     {
@@ -17,7 +12,6 @@ public class SimpleBullet : BaseBullet
         {
             hitSource = GetComponent<AudioSource>();
         }
-        mesh = transform.GetChild(0).gameObject;
     }
 
     void Update()
@@ -34,14 +28,14 @@ public class SimpleBullet : BaseBullet
         }
     }
 
-    protected override IEnumerator Deacivate()
-    {
-        col.enabled = false;
-        mesh.SetActive(false);
-        yield return new WaitForSeconds(1.5f);
-        col.enabled = true;
-        mesh.SetActive(true);
-        pool.ReturnToPool(this.gameObject);
-    }
+    //protected override IEnumerator Deacivate()
+    //{
+    //    col.enabled = false;
+    //    mesh.SetActive(false);
+    //    yield return new WaitForSeconds(1.5f);
+    //    col.enabled = true;
+    //    mesh.SetActive(true);
+    //    pool.ReturnToPool(this.gameObject);
+    //}
 
 }

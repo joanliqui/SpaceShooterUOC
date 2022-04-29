@@ -7,11 +7,14 @@ public abstract class BaseBullet : MonoBehaviour, IPoolObject
     [SerializeField] protected float speed;
     [SerializeField] protected int damage;
     protected Camera cam;
-    protected Pool pool;
     [SerializeField] protected float maxLifeTime = 2f;
     protected float lifeTime;
-    protected Pool impactParticlePool; 
+    [Header("For Disconnect")]
     protected Collider col;
+    protected GameObject mesh;
+    protected Pool pool;
+    protected Pool impactParticlePool; 
+
     protected AudioSource hitSource;
     protected bool hit = false; 
 
@@ -19,6 +22,8 @@ public abstract class BaseBullet : MonoBehaviour, IPoolObject
     {
         cam = Camera.main;
         col = GetComponent<Collider>();
+        mesh = transform.GetChild(0).gameObject;
+
         impactParticlePool = GameObject.FindGameObjectWithTag("BulletParticlePool").GetComponent<Pool>();
         if(hitSource == null)
         {
@@ -30,6 +35,7 @@ public abstract class BaseBullet : MonoBehaviour, IPoolObject
     private void OnEnable()
     {
         hit = false;
+        lifeTime = 0;
     }
 
     public Pool Pool
@@ -50,10 +56,17 @@ public abstract class BaseBullet : MonoBehaviour, IPoolObject
         {
             hit = true;
             damaged.Damaged(damage);
+
+            //Instanciar Particula de impacto
             GameObject g = impactParticlePool.Get();
             g.SetActive(true);
             g.transform.position = transform.position;
-            hitSource.Play();
+
+            //Sonido de golpe
+            if(hitSource)
+                hitSource.Play();
+
+            //Desactivar componentes y volver a la pool
             StartCoroutine(Deacivate());
         }
     }
@@ -61,7 +74,10 @@ public abstract class BaseBullet : MonoBehaviour, IPoolObject
     protected virtual IEnumerator Deacivate()
     {
         col.enabled = false;
+        mesh.SetActive(false);
         yield return new WaitForSeconds(1.5f);
+        col.enabled = true;
+        mesh.SetActive(true);
         pool.ReturnToPool(this.gameObject);
     }
 

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3403755406172049255}
   - component: {fileID: -8717097236421912401}
-  - component: {fileID: 9000940199200071515}
+  - component: {fileID: 9078313959170413211}
   m_Layer: 10
   m_Name: BombBullet
   m_TagString: Untagged
@@ -25,9 +25,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3403755406172049254}
-  m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -6.742203, y: 3.4230378, z: 1.1239474}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 3403755407180495872}
   m_Father: {fileID: 0}
@@ -47,9 +47,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 35
   damage: 25
-  maxLifeTime: 2
---- !u!136 &9000940199200071515
-CapsuleCollider:
+  maxLifeTime: 1.2
+  radius: 6.28
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!135 &9078313959170413211
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -58,9 +62,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
+  serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3403755407180495875
 GameObject:
@@ -73,7 +76,6 @@ GameObject:
   - component: {fileID: 3403755407180495872}
   - component: {fileID: 3403755407180495903}
   - component: {fileID: 3403755407180495902}
-  - component: {fileID: 6288896896179168187}
   m_Layer: 0
   m_Name: CapsuleMesh
   m_TagString: Untagged
@@ -102,7 +104,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3403755407180495875}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &3403755407180495902
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -144,18 +146,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6288896896179168187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3403755407180495875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a0203aa19194d44ca5aef519e36e66d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  damage: 0
-  maxLifeTime: 2

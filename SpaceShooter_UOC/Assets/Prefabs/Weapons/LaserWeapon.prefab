@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBtwShots: 2.3
-  weaponSprite: {fileID: 0}
+  weaponSprite: {fileID: -5856976628093251591, guid: b528575f957e61642ac93ceaec94a3e7, type: 3}
   bulletPool: {fileID: 0}
   clip: {fileID: 0}
   fromOneSocket: 0
