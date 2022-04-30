@@ -9,9 +9,8 @@ public class SimpleEnemyShip : BaseEnemy, IDamagable
     [SerializeField] float timeBtwShots;
     [SerializeField] Weapon weapon;
     private bool canShot = false; 
-    void Start()
+    void Awake()
     {
-        source = GetComponent<AudioSource>();
         StartCoroutine(Shooting());
         timeBtwShots = weapon.TimeBtwShots;
         if(weapon.BulletPool == null)
@@ -19,6 +18,7 @@ public class SimpleEnemyShip : BaseEnemy, IDamagable
             weapon.BulletPool = GameObject.FindGameObjectWithTag("EnemyPool").GetComponent<Pool>();
         }
     }
+
 
     void Update()
     {

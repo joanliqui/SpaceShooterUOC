@@ -10,7 +10,8 @@ public class EndCondition : MonoBehaviour
     [SerializeField] GameObject victoryPanel;
     [SerializeField] GameObject losePanel;
     [SerializeField] GameObject newRecordImage;
-    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI scoreTextWin;
+    [SerializeField] TextMeshProUGUI scoreTextLose;
 
     [Header("TimeScaleVariables")]
     [SerializeField] bool reduceTimeScale = true;
@@ -66,6 +67,12 @@ public class EndCondition : MonoBehaviour
         {
             Destroy(item);
         }
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject item in enemies)
+        {
+            Destroy(item);
+        }
     }
 
     public void PanelGameWin()
@@ -80,7 +87,7 @@ public class EndCondition : MonoBehaviour
 
     private void SetWinPanel()
     {
-        scoreText.text = ScoreManager.Instance.Score.ToString();
+        scoreTextWin.text = ScoreManager.Instance.Score.ToString();
         if(ScoreManager.Instance.Score > ScoreManager.Instance.MaxScore)
         {
             newRecordImage.SetActive(true);
@@ -88,8 +95,18 @@ public class EndCondition : MonoBehaviour
         }
     }
 
-    public void GameLose()
+    public void PanelGameLose()
     {
         finish = true;
+        endPanel.SetActive(true);
+        losePanel.SetActive(true);
+        victoryPanel.SetActive(false);
+
+        SetLosePanel();
+    }
+
+    private void SetLosePanel()
+    {
+        scoreTextLose.text = ScoreManager.Instance.Score.ToString();
     }
 }

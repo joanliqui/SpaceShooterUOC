@@ -23,7 +23,12 @@ public class Explosion : MonoBehaviour, IPoolObject
     IEnumerator ToPool()
     {
         yield return new WaitForSeconds(timeToPool);
-        pool.ReturnToPool(this.gameObject);
+        if(pool)
+            pool.ReturnToPool(this.gameObject);
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
     private void OnEnable()
     {

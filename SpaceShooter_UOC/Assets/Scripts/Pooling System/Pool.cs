@@ -11,6 +11,10 @@ public class Pool : MonoBehaviour
 
     Queue<GameObject> objects = new Queue<GameObject>();
 
+    private void Start()
+    {
+        AddObjects(poolSize);
+    }
     public GameObject Get()
     {
         if (objects.Count == 0)

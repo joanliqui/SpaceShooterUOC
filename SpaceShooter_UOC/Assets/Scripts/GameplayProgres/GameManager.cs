@@ -21,7 +21,8 @@ public class GameManager : MonoBehaviour
     int frameRound;
     [SerializeField] UnityEvent OnGameBegins;
     [SerializeField] UnityEvent OnRoundFinished;
-    [SerializeField] UnityEvent OnGameFinished;
+    [SerializeField] public UnityEvent OnGameWin;
+    [SerializeField] public UnityEvent OnGameLose;
     private bool noMoreRounds = false;
 
 
@@ -68,7 +69,7 @@ public class GameManager : MonoBehaviour
         {
             if(frameRound == 3)
             {
-                OnGameFinished?.Invoke();
+                OnGameWin?.Invoke();
             }
         }
     }
@@ -105,7 +106,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            OnGameFinished?.Invoke();
+            OnGameWin?.Invoke();
         }
     }
 

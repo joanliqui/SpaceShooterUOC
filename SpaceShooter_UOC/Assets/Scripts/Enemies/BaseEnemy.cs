@@ -7,16 +7,15 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable, IPoolObject, IRound
     [SerializeField] protected int movSpeed = 10;
     [SerializeField] protected int health = 50;
     [SerializeField] protected WeaponPowerUp powerUp;
-    protected AudioSource source;
     [SerializeField] protected int points = 10;
-    [SerializeField] protected GameObject explosionPrefab;
+    //[SerializeField] protected GameObject explosionPrefab;
     protected Pool explosionPool;
-    [SerializeField] protected AudioSource explosion;
-    private GameObject rend;
-    private Collider col;
+    [SerializeField] protected AudioSource explosionSource;
+    protected GameObject rend;
+    protected Collider col;
 
     [Header("Pool References")]
-    private Pool commingFromPool;
+    protected Pool commingFromPool;
     protected bool isAlive = true;
 
     protected Round round;
@@ -43,8 +42,18 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable, IPoolObject, IRound
 
     private void Awake()
     {
-        rend = transform.GetChild(0).gameObject;
-        col = GetComponent<Collider>();
+        if(rend == null)
+        {
+            rend = transform.GetChild(0).gameObject;
+        }
+        if(col == null)
+        {
+            col = GetComponent<Collider>();
+        }
+        if(explosionSource == null)
+        {
+            explosionSource = GetComponent<AudioSource>();
+        }
         if(explosionPool == null)
         {
             explosionPool = GameObject.FindGameObjectWithTag("ExplosionPool").GetComponent<Pool>();
@@ -53,6 +62,23 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable, IPoolObject, IRound
     private void OnEnable()
     {
         isAlive = true;
+        if (rend == null)
+        {
+            rend = transform.GetChild(0).gameObject;
+        }
+        if (col == null)
+        {
+            col = GetComponent<Collider>();
+        }
+        if (explosionPool == null)
+        {
+            explosionPool = GameObject.FindGameObjectWithTag("ExplosionPool").GetComponent<Pool>();
+        }
+        if (explosionSource == null)
+        {
+            explosionSource = GetComponent<AudioSource>();
+        }
+
     }
     public virtual void Attack()
     {
@@ -67,18 +93,27 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable, IPoolObject, IRound
             round = null;
         } 
 
-        GameObject o = Instantiate(powerUp.gameObject, transform.position, Quaternion.identity);
-
-        GameObject exp = explosionPool.Get();
-        exp.SetActive(true);
-        exp.transform.position = transform.position;
+        if(powerUp != null)
+        {
+            GameObject o = Instantiate(powerUp.gameObject, transform.position, Quaternion.identity);
+        }
+        if(explosionPool != null)
+        {
+            GameObject exp = explosionPool.Get();
+            exp.SetActive(true);
+            exp.transform.position = transform.position;
+        }
 
         AddPoints();
-        explosion.Play();
-        rend.SetActive(false);
-        col.enabled = false;
+        if(explosionSource != null)
+            explosionSource.Play();
+        if(rend)
+            rend.SetActive(false);
+        if(col)
+            col.enabled = false;
+
         isAlive = false;
-        StartCoroutine(DeacivateShip(explosion.clip.length));
+        StartCoroutine(DeacivateEnemy(explosionSource.clip.length));
     }
 
     public void OutOfView()
@@ -88,10 +123,11 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable, IPoolObject, IRound
             round.TotalEnemiesInRound--;
             round = null;
         }
-        commingFromPool.ReturnToPool(this.gameObject);
+        if(commingFromPool)
+            commingFromPool.ReturnToPool(this.gameObject);
     }
 
-    IEnumerator DeacivateShip(float time)
+    IEnumerator DeacivateEnemy(float time)
     {
         yield return new WaitForSeconds(time);
         commingFromPool.ReturnToPool(this.gameObject);
@@ -106,5 +142,18 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable, IPoolObject, IRound
     public virtual void AddPoints()
     {
         ScoreManager.Instance.AddScorePoints(points);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            IDamagable p = other.GetComponent<IDamagable>();
+            if (p != null)
+            {
+                p.Damaged(1);
+            }
+            Destroyed();
+        }
     }
 }

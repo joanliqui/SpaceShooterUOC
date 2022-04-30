@@ -31,6 +31,8 @@ public class LaserWeapon : Weapon
         cntTime = 0.0f;
         this.socket = socket;
         isShooting = true;
+        source.clip = clip;
+        source.Play();
     }
 
     public override void Shot(Transform[] sockets, AudioSource source)
@@ -38,6 +40,8 @@ public class LaserWeapon : Weapon
         cntTime = 0.0f;
         this.sockets = sockets;
         isShooting = true;
+        source.clip = clip;
+        source.Play();
     }
 
 

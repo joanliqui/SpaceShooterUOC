@@ -4,29 +4,45 @@ using UnityEngine;
 
 public class PlayerLife : MonoBehaviour, IDamagable
 {
-    private int life;
+    [SerializeField] private int maxLife;
+    private int cntLife;
+    private Collider col;
+    private GameObject mesh;
+    [SerializeField] GameObject explosionParticlePrefab;
+    [SerializeField] AudioSource explosionSource;
+    
+
 
     public void Damaged(int damage)
     {
-        if(life > 0)
+        if(cntLife > 1)
         {
-            life--;
-            Debug.Log(life);
+            cntLife--;
+            Debug.Log(cntLife);
         }
         else 
         {
+            Debug.Log("Muertooo");
             Destroyed();
         }
     }
 
     public void Destroyed()
     {
-        Debug.Log("HE MUERTO");
+        GameManager.Instance.OnGameLose?.Invoke(); //Desactiva Input y Activa Panel de Lose
+        col.enabled = false;
+        mesh.SetActive(false);
+        Instantiate(explosionParticlePrefab, transform.position, Quaternion.identity);
+        if(explosionSource)
+            explosionSource.Play();
     }
 
     void Start()
     {
-        life = 10;
+        cntLife = maxLife;
+        col = GetComponent<Collider>();
+        mesh = transform.GetChild(0).gameObject;
+        
     }
 
 }
