@@ -48,10 +48,11 @@ MonoBehaviour:
   speed: 35
   damage: 25
   maxLifeTime: 1.2
-  radius: 6.28
+  radius: 13.8
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
+  explosionVFX: {fileID: 4004341322311222008, guid: 271ed601fd65b6645b4c32a14d8ef589, type: 3}
 --- !u!135 &9078313959170413211
 SphereCollider:
   m_ObjectHideFlags: 0

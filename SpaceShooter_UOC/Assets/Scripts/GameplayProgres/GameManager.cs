@@ -47,31 +47,22 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (!noMoreRounds)
+        
+        if(actualRound != null && actualRound.InRound)
         {
-            if(actualRound != null && actualRound.InRound)
+            if(frameRound % 3 == 0) //Para no estar ejecutando la logica a cada frame
             {
-                if(frameRound % 3 == 0) //Para no estar ejecutando la logica a cada frame
+                if (actualRound.IsRoundFinished())
                 {
-                    if (actualRound.IsRoundFinished())
-                    {
-                        actualRound.InRound = false;
-                        actualRound = null;
-                        noMoreRounds = true;
-                        frameRound = 0;
-                        OnRoundFinished?.Invoke();
-                    }
+                    actualRound.InRound = false;
+                    actualRound = null;
+                    frameRound = 0;
+                    OnRoundFinished?.Invoke();
                 }
-                frameRound++;
             }
+            frameRound++;
         }
-        else
-        {
-            if(frameRound == 3)
-            {
-                OnGameWin?.Invoke();
-            }
-        }
+        
     }
 
     private void InicializePlayer()

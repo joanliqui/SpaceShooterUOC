@@ -6,17 +6,18 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable, IPoolObject, IRound
 {
     [SerializeField] protected int movSpeed = 10;
     [SerializeField] protected int health = 50;
-    [SerializeField] protected WeaponPowerUp powerUp;
     [SerializeField] protected int points = 10;
-    //[SerializeField] protected GameObject explosionPrefab;
+
     protected Pool explosionPool;
     [SerializeField] protected AudioSource explosionSource;
     protected GameObject rend;
     protected Collider col;
+    protected PowerUpManager powerUpManager;
 
     [Header("Pool References")]
     protected Pool commingFromPool;
     protected bool isAlive = true;
+
 
     protected Round round;
     public Pool Pool 
@@ -30,7 +31,6 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable, IPoolObject, IRound
             }
         }
     }
-
     public Round Round 
     {
         get { return round; }
@@ -58,8 +58,12 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable, IPoolObject, IRound
         {
             explosionPool = GameObject.FindGameObjectWithTag("ExplosionPool").GetComponent<Pool>();
         }
+        if(powerUpManager == null)
+        {
+            powerUpManager = GameObject.FindGameObjectWithTag("PowerUpManager").GetComponent<PowerUpManager>();
+        }
     }
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         isAlive = true;
         if (rend == null)
@@ -93,9 +97,12 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable, IPoolObject, IRound
             round = null;
         } 
 
-        if(powerUp != null)
+        if(powerUpManager != null  )
         {
-            GameObject o = Instantiate(powerUp.gameObject, transform.position, Quaternion.identity);
+            if (powerUpManager.CanGenerateWeapon())
+            {
+                GameObject o = Instantiate(powerUpManager.GetWeaponPowerUp(), transform.position, Quaternion.identity);
+            }
         }
         if(explosionPool != null)
         {
@@ -136,7 +143,11 @@ public abstract class BaseEnemy : MonoBehaviour, IDamagable, IPoolObject, IRound
     }
     public virtual void Damaged(int damage)
     {
-       
+        health -= damage;
+        if (health <= 0)
+        {
+            Destroyed();
+        }
     }
 
     public virtual void AddPoints()

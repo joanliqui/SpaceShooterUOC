@@ -10,10 +10,12 @@ public class Pool : MonoBehaviour
     private int cntInPool = 0;
 
     Queue<GameObject> objects = new Queue<GameObject>();
+    [SerializeField] bool preReload = false;
 
     private void Start()
     {
-        AddObjects(poolSize);
+        if(preReload)
+            AddObjects(poolSize);
     }
     public GameObject Get()
     {

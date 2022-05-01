@@ -9,6 +9,7 @@ public class BombBullet : BaseBullet
     [SerializeField] float radius = 3f;
     private bool oneExplosion;
     [SerializeField] LayerMask enemyLayer;
+    [SerializeField] GameObject explosionVFX;
 
     private void OnEnable()
     {
@@ -43,13 +44,16 @@ public class BombBullet : BaseBullet
     private void ExplosionArea()
     {
         Collider[] cols = Physics.OverlapSphere(transform.position, radius, enemyLayer);
+        Instantiate(explosionVFX, transform.position, Quaternion.identity);
         foreach (Collider item in cols)
         {
+            Debug.Log(item.name);
             if(item.TryGetComponent<IDamagable>(out IDamagable damagable))
             {
                 damagable.Damaged(damage);
             }
         }
+
     }
 
     private void OnDrawGizmos()
@@ -64,10 +68,10 @@ public class BombBullet : BaseBullet
     public override void OnTriggerEnter(Collider other)
     {
         //Explota dañando en area
-        ExplosionArea();
         Debug.Log("Explota por Hit");
         //Hace el daño del impacto, suena el sonido, sale la particula de impacot y se desactiva y vuelve a la pool
         base.OnTriggerEnter(other);
+        ExplosionArea();
     }
 
 }

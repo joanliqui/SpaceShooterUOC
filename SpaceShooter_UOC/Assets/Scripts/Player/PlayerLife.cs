@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour, IDamagable
 {
@@ -10,7 +11,12 @@ public class PlayerLife : MonoBehaviour, IDamagable
     private GameObject mesh;
     [SerializeField] GameObject explosionParticlePrefab;
     [SerializeField] AudioSource explosionSource;
-    
+
+    [Header("UI")]
+    [SerializeField] GameObject layout;
+    [SerializeField] GameObject uiLifePrefab;
+    private List<GameObject> lifesUI = new List<GameObject>();
+
 
 
     public void Damaged(int damage)
@@ -25,6 +31,7 @@ public class PlayerLife : MonoBehaviour, IDamagable
             Debug.Log("Muertooo");
             Destroyed();
         }
+        UpdateLifeUI();
     }
 
     public void Destroyed()
@@ -42,7 +49,31 @@ public class PlayerLife : MonoBehaviour, IDamagable
         cntLife = maxLife;
         col = GetComponent<Collider>();
         mesh = transform.GetChild(0).gameObject;
-        
+
+        InicializaeUI();
+    }
+
+    void InicializaeUI()
+    {
+        for (int i = 0; i < maxLife; i++)
+        {
+            lifesUI.Add(Instantiate(uiLifePrefab, layout.transform));
+        }
+    }
+
+    private void UpdateLifeUI()
+    {
+        for (int i = 0; i < maxLife; i++)
+        {
+            if(i < cntLife)
+            {
+                lifesUI[i].SetActive(true);
+            }
+            else
+            {
+                lifesUI[i].SetActive(false);
+            }
+        }
     }
 
 }

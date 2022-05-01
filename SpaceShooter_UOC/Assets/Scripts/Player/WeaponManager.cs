@@ -19,6 +19,7 @@ public class WeaponManager : MonoBehaviour
     private float cntTimeBtwShots = 0;
     private bool canShot = true;
 
+    public List<Weapon> Weapons { get => weapons; set => weapons = value; }
 
     private void Start()
     {

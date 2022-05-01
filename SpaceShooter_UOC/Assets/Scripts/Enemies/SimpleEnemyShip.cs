@@ -11,6 +11,7 @@ public class SimpleEnemyShip : BaseEnemy, IDamagable
     private bool canShot = false; 
     void Awake()
     {
+        canShot = true;
         StartCoroutine(Shooting());
         timeBtwShots = weapon.TimeBtwShots;
         if(weapon.BulletPool == null)
@@ -19,7 +20,11 @@ public class SimpleEnemyShip : BaseEnemy, IDamagable
         }
     }
 
-
+    protected override void OnEnable()
+    {
+        canShot = true;
+        base.OnEnable();
+    }
     void Update()
     {
         if (isAlive)
@@ -42,6 +47,7 @@ public class SimpleEnemyShip : BaseEnemy, IDamagable
 
     public override void Attack()
     {
+        Debug.Log("Shot");
         weapon.Shot(socket, null);
     }
     public override void Damaged(int damage)
