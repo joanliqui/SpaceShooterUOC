@@ -14,6 +14,9 @@ public class ShipController : MonoBehaviour
     [SerializeField] float movSpeed = 10f;
     [SerializeField] float rotationSpeed = 5f;
     [SerializeField] float maxRotation = 25f;
+#if UNITY_EDITOR
+    [SerializeField] float editorMovMultiplier = 2;
+#endif
 
     //player
     private Vector3 appliedMovement;
@@ -21,6 +24,8 @@ public class ShipController : MonoBehaviour
     private float rotationVelocity;
     float targetRotation = 0.0f;
     public float elapsed;
+
+
 
 
     void Start()
@@ -58,6 +63,9 @@ public class ShipController : MonoBehaviour
     private void Movement()
     {
         Vector3 inputDirection = new Vector3(-input.moveDir.y, 0f, input.moveDir.x).normalized;
+#if UNITY_EDITOR
+        inputDirection *= editorMovMultiplier;
+#endif
         appliedMovement = inputDirection * movSpeed * Time.deltaTime;
     }
 
