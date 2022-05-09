@@ -12,10 +12,14 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     private static ScoreManager _instance;
 
+    const int playerLifeValor = 5000;
+    PlayerLife playerLife;
+
     #region Propiedades
     public static ScoreManager Instance { get => _instance;}
     public int Score { get => score; set => score = value; }
     public int MaxScore { get => maxScore; set => maxScore = value; }
+    public int PlayerLifeValor { get => playerLifeValor;}
     #endregion
 
     void Awake()
@@ -37,23 +41,23 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        
+        playerLife = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLife>();
     }
 
     public void AddScorePoints(int points)
     {
         score += points;
-        StartCoroutine(AddPointsWithTime(points));
+        StartCoroutine(AddPointsWithTime(points, 0.007f));
     }
 
 
-    IEnumerator AddPointsWithTime(int points)
+    IEnumerator AddPointsWithTime(int points, float time)
     {
         for (int i = 0; i < points; i++)
         {
             visualScore++;
             scoreText.text = visualScore.ToString();
-            yield return new WaitForSeconds(0.007f);
+            yield return new WaitForSeconds(time);
         }
     }
 
@@ -62,4 +66,14 @@ public class ScoreManager : MonoBehaviour
         maxScore = score;
         scoreSO.SetMaxScore(maxScore);
     }
+
+    public int CalculateEndScore()
+    {
+        int valueLifePoints = 0;
+        valueLifePoints = playerLifeValor * playerLife.CntLife;
+        score += playerLifeValor * playerLife.CntLife;
+        //scoreText.text = score.ToString();
+        return valueLifePoints;
+    }
+
 }

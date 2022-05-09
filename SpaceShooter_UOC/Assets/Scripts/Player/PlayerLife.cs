@@ -17,7 +17,7 @@ public class PlayerLife : MonoBehaviour, IDamagable
     [SerializeField] GameObject uiLifePrefab;
     private List<GameObject> lifesUI = new List<GameObject>();
 
-
+    public int CntLife { get => cntLife; private set => cntLife = value; }
 
     public void Damaged(int damage)
     {

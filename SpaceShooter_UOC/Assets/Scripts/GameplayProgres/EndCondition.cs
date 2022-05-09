@@ -6,18 +6,27 @@ using TMPro;
 public class EndCondition : MonoBehaviour
 {
     [Header("EndPanels")]
-    [SerializeField] GameObject endPanel;
+    [Header("WinPanel")]
     [SerializeField] GameObject victoryPanel;
-    [SerializeField] GameObject losePanel;
     [SerializeField] GameObject newRecordImage;
     [SerializeField] TextMeshProUGUI scoreTextWin;
+    [SerializeField] TextMeshProUGUI nLifesText;
+    [SerializeField] TextMeshProUGUI lifesPointsText;
+
+    [Header("LosePanel")]
+    [SerializeField] GameObject endPanel;
+    [SerializeField] GameObject losePanel;
     [SerializeField] TextMeshProUGUI scoreTextLose;
+    
 
     [Header("TimeScaleVariables")]
     [SerializeField] bool reduceTimeScale = true;
     bool finish = false;
     float reduceTimeSpeed = 0.3f;
     float cntTimeScale = 1;
+
+    //[Header("Player")]
+    private PlayerLife playerLife;
     public void InicializeEndCondition()
     {
         endPanel.SetActive(false);
@@ -25,6 +34,7 @@ public class EndCondition : MonoBehaviour
         losePanel.SetActive(false);
         newRecordImage.SetActive(false);
         cntTimeScale = 1.0f;
+        playerLife = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLife>();
     }
 
     public void DestroyAllEnemies()
@@ -87,7 +97,12 @@ public class EndCondition : MonoBehaviour
 
     private void SetWinPanel()
     {
+        //Lifes
+        nLifesText.text = playerLife.CntLife.ToString();
+        lifesPointsText.text = "+" + ScoreManager.Instance.CalculateEndScore().ToString();
+        //Score
         scoreTextWin.text = ScoreManager.Instance.Score.ToString();
+        //MaxScore
         if(ScoreManager.Instance.Score > ScoreManager.Instance.MaxScore)
         {
             newRecordImage.SetActive(true);
@@ -101,6 +116,7 @@ public class EndCondition : MonoBehaviour
         endPanel.SetActive(true);
         losePanel.SetActive(true);
         victoryPanel.SetActive(false);
+        ScoreManager.Instance.SaveMaxScore();
 
         SetLosePanel();
     }
