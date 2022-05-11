@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f9179b7303a6a641a9f680825f98718, type: 3}
-  m_Name: Level1
+  m_Script: {fileID: 11500000, guid: 357f30d62552b474794ea3dba6dd48d5, type: 3}
+  m_Name: DataLevel 1
   m_EditorClassIdentifier: 
-  rounds:
-  - enemysRound:
-    - spawnerType: 1
-      spawner: {fileID: 0}
-      cantidad: 5
-      timeSpawn: 1
-    inRound: 0
-    totalEnemiesInRound: 0
+  level: Level 1
+  maxScore: 0

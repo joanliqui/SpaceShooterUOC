@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ScoreData", menuName = "ScoreData")]
 public class ScoreSO : ScriptableObject
 {
+    private Data data;
+
     public string level;
     public int maxScore;
 
@@ -13,20 +15,30 @@ public class ScoreSO : ScriptableObject
     private void OnEnable()
     {
         serializer = new XMLSerializer();
-        maxScore = serializer.LoadMaxScore();
-        Debug.Log("ScoreData Awake. MaxScore:" + maxScore);
+        LoadData();
     }
     public void SetMaxScore(int maxScore)
     {
+
         this.maxScore = maxScore;
-        SaveData();
+        data.maxScore = maxScore;
+        serializer.SaveData(this.data);
     }
 
-    private void SaveData()
+
+    void LoadData() //Esto solo se usa al encender la aplicación
     {
-        serializer.SaveData(this);
+        data = serializer.LoadData(level);
+        if(data != null)
+        {
+            maxScore = data.maxScore;
+        }
+        else
+        {
+            data = new Data(level);
+        }
+        Debug.Log("ScoreData Awake. MaxScore:" + maxScore);
     }
-
 
 
     [ContextMenu("Delete PlayerPrefs Data")]

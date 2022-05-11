@@ -16,7 +16,51 @@ MonoBehaviour:
   - enemysRound:
     - spawnerType: 1
       spawner: {fileID: 0}
+      cantidad: 10
+      timeSpawn: 2
+    inRound: 0
+    totalEnemiesInRound: 0
+  - enemysRound:
+    - spawnerType: 1
+      spawner: {fileID: 0}
+      cantidad: 4
+      timeSpawn: 1.5
+    - spawnerType: 0
+      spawner: {fileID: 0}
+      cantidad: 3
+      timeSpawn: 3
+    inRound: 0
+    totalEnemiesInRound: 0
+  - enemysRound:
+    - spawnerType: 1
+      spawner: {fileID: 0}
       cantidad: 5
-      timeSpawn: 1
+      timeSpawn: 5
+    - spawnerType: 0
+      spawner: {fileID: 0}
+      cantidad: 10
+      timeSpawn: 2
+    inRound: 0
+    totalEnemiesInRound: 0
+  - enemysRound:
+    - spawnerType: 2
+      spawner: {fileID: 0}
+      cantidad: 8
+      timeSpawn: 2.3
+    inRound: 0
+    totalEnemiesInRound: 0
+  - enemysRound:
+    - spawnerType: 2
+      spawner: {fileID: 0}
+      cantidad: 8
+      timeSpawn: 3
+    - spawnerType: 1
+      spawner: {fileID: 0}
+      cantidad: 5
+      timeSpawn: 2.1
+    - spawnerType: 0
+      spawner: {fileID: 0}
+      cantidad: 7
+      timeSpawn: 1.3
     inRound: 0
     totalEnemiesInRound: 0

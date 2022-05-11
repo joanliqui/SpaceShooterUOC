@@ -4,10 +4,7 @@ using UnityEngine;
 
 public abstract class BaseSerializer
 {
-    public abstract void SaveData(ScoreSO data);
+    public abstract void SaveData(Data data);
 
-    public virtual int LoadMaxScore()
-    {
-        return 0;
-    }
+    public abstract Data LoadData(string path);
 }

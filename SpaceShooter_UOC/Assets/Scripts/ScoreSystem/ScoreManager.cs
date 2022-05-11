@@ -32,7 +32,7 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
+        actualScoreSO = LevelProvider.Instace.GetDataLevel();
         maxScore = actualScoreSO.maxScore;
         score = 0;
         visualScore = 0;

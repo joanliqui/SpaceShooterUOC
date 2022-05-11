@@ -1375,7 +1375,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0006ed6149ec7194392f8a4824861268, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelsData: []
+  levelsData:
+  - {fileID: 11400000, guid: dbf5d613d7b2d8b4db7a1517e9fd186e, type: 2}
+  - {fileID: 11400000, guid: b157ce459f6952b4abf2fbd8026ddba0, type: 2}
   levelsRounds:
   - {fileID: 11400000, guid: 7e63094b8cddf3046acea68e079a65f6, type: 2}
   - {fileID: 11400000, guid: 9cc6dd2d108d99940836162122a92194, type: 2}

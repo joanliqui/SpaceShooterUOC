@@ -9,6 +9,7 @@ public class LevelProvider : MonoBehaviour
     [SerializeField] List<LevelSO> levelsRounds;
 
     LevelSO levelToProvide;
+    ScoreSO dataToProvide;
     int cntLevel;
 
     static LevelProvider instace;
@@ -25,6 +26,7 @@ public class LevelProvider : MonoBehaviour
         {
             instace = this;
             levelToProvide = levelsRounds[0]; //Ponemos el nivel 1 por defecto
+            dataToProvide = levelsData[0];
             DontDestroyOnLoad(gameObject);
         }
         else if(instace != this)
@@ -39,10 +41,16 @@ public class LevelProvider : MonoBehaviour
     {
         cntLevel = level - 1;
         levelToProvide = levelsRounds[cntLevel];
+        dataToProvide = levelsData[cntLevel];
     }
 
     public LevelSO GetLevel()
     {
         return levelToProvide;
+    }
+
+    public ScoreSO GetDataLevel()
+    {
+        return dataToProvide;
     }
 }
