@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class PlayerPrefsSerializer : BaseSerializer
 {
-    public override void SaveMaxScore(int value)
-    {
-        PlayerPrefs.SetInt("maxScore", value);
-    }
     public override int LoadMaxScore()
     {
         return PlayerPrefs.GetInt("maxScore");
+    }
+
+    public override void SaveData(ScoreSO data)
+    {
+        PlayerPrefs.SetInt("maxScore", data.maxScore);
     }
 }

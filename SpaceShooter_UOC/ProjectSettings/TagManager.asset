@@ -12,6 +12,7 @@ TagManager:
   - PowerUp
   - EnemyBullet
   - PowerUpManager
+  - LevelProvider
   layers:
   - Default
   - TransparentFX

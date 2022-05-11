@@ -116,13 +116,17 @@ public class EndCondition : MonoBehaviour
         endPanel.SetActive(true);
         losePanel.SetActive(true);
         victoryPanel.SetActive(false);
-        ScoreManager.Instance.SaveMaxScore();
+     
 
         SetLosePanel();
     }
 
     private void SetLosePanel()
     {
+        if (ScoreManager.Instance.Score > ScoreManager.Instance.MaxScore)
+        {
+            ScoreManager.Instance.SaveMaxScore();
+        }
         scoreTextLose.text = ScoreManager.Instance.Score.ToString();
     }
 }

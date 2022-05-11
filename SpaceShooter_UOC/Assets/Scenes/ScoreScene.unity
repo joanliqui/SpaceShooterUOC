@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 291365817}
   - component: {fileID: 291365816}
   m_Layer: 5
-  m_Name: LVL 1 Score
+  m_Name: LVL 2 Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,6 +816,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 137759129}
   so: {fileID: 11400000, guid: dbf5d613d7b2d8b4db7a1517e9fd186e, type: 2}
+  levelsData:
+  - {fileID: 11400000, guid: dbf5d613d7b2d8b4db7a1517e9fd186e, type: 2}
+  scoreTexts:
+  - {fileID: 137759129}
+  - {fileID: 291365816}
+  - {fileID: 1605179010}
+  - {fileID: 1612418349}
 --- !u!1 &892031337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1275,7 +1282,7 @@ GameObject:
   - component: {fileID: 1605179011}
   - component: {fileID: 1605179010}
   m_Layer: 5
-  m_Name: LVL 1 Score
+  m_Name: LVL 3 Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1411,7 +1418,7 @@ GameObject:
   - component: {fileID: 1612418350}
   - component: {fileID: 1612418349}
   m_Layer: 5
-  m_Name: LVL 1 Score
+  m_Name: LVL 4 Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

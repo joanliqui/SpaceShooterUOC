@@ -5,7 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class SpawnerRound
 {
-    [SerializeField] private Spawner spawner;
+    [SerializeField] SpawnerEnum spawnerType;
+    public  Spawner spawner;
     [SerializeField] int cantidad;
     [SerializeField] float timeSpawn;
 
@@ -13,7 +14,13 @@ public class SpawnerRound
 
     public void InicializeSpawner()
     {
-        spawner.InicializeSpawner(timeSpawn);
+        spawner = GameManager.Instance.GetSpawner(spawnerType);
+        if (spawner != null)
+        {
+            spawner.InicializeSpawner(timeSpawn);
+        }
+        else
+            Debug.LogError("No se ha encontrado el spawner");
     }
     public void SpawnEnemies(Round round)
     {

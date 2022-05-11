@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     private InputManager input;
 
     [Header("Rounds")]
-    [SerializeField] List<Round> rounds;
+    [SerializeField] LevelSO level;
+    private List<Round> rounds;
     int nActualRound;
     Round actualRound;
     int frameRound;
@@ -23,7 +24,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] UnityEvent OnRoundFinished;
     [SerializeField] public UnityEvent OnGameWin;
     [SerializeField] public UnityEvent OnGameLose;
-    private bool noMoreRounds = false;
+    //LEVEL
+    int cntLevel;
+
+    [Header("Spawners")]
+    [SerializeField] List<Spawner> spawnersPrefabs;
+    [SerializeField] Spawner simpleEnemySpawner;
+    [SerializeField] Spawner meteorSpawner, sinusEnemySpawner;
+    private Dictionary<SpawnerEnum, GameObject> spawnerDictionary;
+    [SerializeField] Transform spawnerInitPos;
+    //[SerializeField] Transform spawnerParent;
 
 
     private void Awake()
@@ -32,7 +42,9 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
         }
+  
         //InicializePlayer();
+        InstantiateSpawners();
     }
     void Start()
     {
@@ -40,9 +52,39 @@ public class GameManager : MonoBehaviour
 
         OnGameBegins?.Invoke(); //Para que objetos agenos al Manager hagan sus cosas
         InicializeRounds();
+        
         nActualRound = 0;
         actualRound = rounds[nActualRound];
         actualRound.Play();
+
+    }
+
+    private void InstantiateSpawners()
+    {
+        spawnerDictionary = new Dictionary<SpawnerEnum, GameObject>();
+        GameObject go = Instantiate(simpleEnemySpawner.gameObject, spawnerInitPos.position, spawnerInitPos.rotation);
+        spawnerDictionary.Add(SpawnerEnum.SIMPLE_ENEMY, go);
+        go = Instantiate(meteorSpawner.gameObject, spawnerInitPos.position, spawnerInitPos.rotation);
+        spawnerDictionary.Add(SpawnerEnum.METEOR, go);
+        go = Instantiate(sinusEnemySpawner.gameObject, spawnerInitPos.position, spawnerInitPos.rotation);
+        spawnerDictionary.Add(SpawnerEnum.SINUS_ENEMY, go);
+
+
+    }
+
+    public void SetLevel()
+    {
+        cntLevel = LevelProvider.Instace.CntLevel;
+        level = LevelProvider.Instace.GetLevel();
+    } 
+
+    public Spawner GetSpawner(SpawnerEnum spawnerType)
+    {
+        spawnerDictionary.TryGetValue(spawnerType, out GameObject spawner);
+        Spawner s = spawner.GetComponent<Spawner>();
+
+        return s;
+
     }
 
     private void Update()
@@ -81,6 +123,11 @@ public class GameManager : MonoBehaviour
     }
     private void InicializeRounds()
     {
+        if(level != null)
+        {
+            rounds = level.rounds;
+        }
+
         foreach (Round item in rounds)
         {
             item.InicialiceRound();
@@ -106,6 +153,12 @@ public class GameManager : MonoBehaviour
     {
         int sc = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sc);
+    }
+
+    public void NextLevel()
+    {
+        LevelProvider.Instace.SetLevelToProvide(cntLevel + 1);
+        ReloadGamePlay();
     }
 
     public void BackToMainMenu()

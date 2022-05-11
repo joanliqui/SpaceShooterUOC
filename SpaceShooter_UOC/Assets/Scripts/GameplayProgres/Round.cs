@@ -34,8 +34,6 @@ public class Round
 
     public bool IsRoundFinished()
     {
-
         return totalEnemiesInRound <= 0;
-
     }
 }

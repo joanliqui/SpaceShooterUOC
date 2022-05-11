@@ -5,23 +5,26 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ScoreData", menuName = "ScoreData")]
 public class ScoreSO : ScriptableObject
 {
+    public string level;
     public int maxScore;
-    PlayerPrefsSerializer serializer;
+
+
+    BaseSerializer serializer;
     private void OnEnable()
     {
-        serializer = new PlayerPrefsSerializer();
-        SetMaxScore(serializer.LoadMaxScore());
+        serializer = new XMLSerializer();
+        maxScore = serializer.LoadMaxScore();
         Debug.Log("ScoreData Awake. MaxScore:" + maxScore);
     }
     public void SetMaxScore(int maxScore)
     {
         this.maxScore = maxScore;
-        SaveMaxScorePrefs();
+        SaveData();
     }
 
-    private void SaveMaxScorePrefs()
+    private void SaveData()
     {
-        serializer.SaveMaxScore(maxScore);
+        serializer.SaveData(this);
     }
 
 

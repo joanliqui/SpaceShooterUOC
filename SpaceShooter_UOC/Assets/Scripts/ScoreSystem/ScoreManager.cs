@@ -6,7 +6,7 @@ public class ScoreManager : MonoBehaviour
 {
     private int maxScore = 0;
     private int score;
-    [SerializeField] ScoreSO scoreSO;
+    [SerializeField] ScoreSO actualScoreSO;
 
     private int visualScore;
     [SerializeField] TextMeshProUGUI scoreText;
@@ -33,7 +33,7 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        maxScore = scoreSO.maxScore;
+        maxScore = actualScoreSO.maxScore;
         score = 0;
         visualScore = 0;
         scoreText.text = "0";
@@ -64,7 +64,7 @@ public class ScoreManager : MonoBehaviour
     public void SaveMaxScore()
     {
         maxScore = score;
-        scoreSO.SetMaxScore(maxScore);
+        actualScoreSO.SetMaxScore(maxScore);
     }
 
     public int CalculateEndScore()
