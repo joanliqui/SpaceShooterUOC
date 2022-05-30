@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     private static ScoreManager _instance;
 
-    const int playerLifeValor = 5000;
+    const int playerLifeValor = 1000;
     PlayerLife playerLife;
 
     #region Propiedades
